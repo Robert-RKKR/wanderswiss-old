@@ -8,7 +8,7 @@ WanderSwiss is a web application designed to inspire people to hike and discover
 ### Purpose and Vision
 The vision behind WanderSwiss is to become the essential guide to hiking in the Swiss mountains, providing comprehensive information on a wide range of topics, including mountain towns and villages, peaks, rivers, lakes, passes, historic sites, cantons and their history. By integrating educational content with practical planning tools and gamification elements, WanderSwiss aims to make hiking in the Swiss mountains more accessible, enjoyable and rewarding.
 
-## User Experience
+### User Experience
 WanderSwiss is designed with user experience at the forefront. The interface is intuitive and user-friendly, ensuring that both tech-savvy users and those less familiar with digital tools can navigate the app with ease. The design is visually appealing, incorporating stunning imagery of Swiss landscapes to inspire and motivate users. The app’s seamless integration of planning tools, educational content, and gamification elements creates a holistic experience that keeps users engaged and motivated.
 
 ### Conclusion
