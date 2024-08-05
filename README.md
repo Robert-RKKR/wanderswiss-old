@@ -14,31 +14,31 @@ WanderSwiss is designed with user experience at the forefront. The interface is 
 ### Conclusion
 WanderSwiss is more than just a hiking app; it is a comprehensive guide and community for anyone passionate about exploring the Swiss mountains. By combining detailed information with practical planning tools and engaging features, WanderSwiss empowers users to discover the beauty of Swiss mountain hiking while fostering a deeper appreciation for the natural and historical richness of the region. Whether you are planning your first hike or looking to conquer new peaks, WanderSwiss is your ultimate companion on the journey.
 
-## Features and Functionalities
+## Features list
 
 ### Hiking planning
-•	Users can create and customize new hikes, trails, or multi-day trails based on their skill level and interests.
-•	Detailed trail descriptions provide insight into terrain, distance, estimated time, and difficulty to help users choose appropriate hikes.
+- Users can create and customize new hikes, trails, or multi-day trails based on their skill level and interests.
+- Detailed trail descriptions provide insight into terrain, distance, estimated time, and difficulty to help users choose appropriate hikes.
 
 ### Hiking calendar
-•	Users can create and customize new hikes, trails, or multi-day trails based on their skill level and interests.
-•	Detailed trail descriptions provide insight into terrain, distance, estimated time, and difficulty to help users choose appropriate hikes.
+- Users can create and customize new hikes, trails, or multi-day trails based on their skill level and interests.
+- Detailed trail descriptions provide insight into terrain, distance, estimated time, and difficulty to help users choose appropriate hikes.
 
 ### Knowledge Base
-•	The app contains a wealth of information on various topics related to the Swiss mountains, including detailed articles on cantons, historical sites, peaks, rivers, lakes and more.
-•	Educational content is updated regularly to ensure that users have access to the most current and accurate information.
+- The app contains a wealth of information on various topics related to the Swiss mountains, including detailed articles on cantons, historical sites, peaks, rivers, lakes and more.
+- Educational content is updated regularly to ensure that users have access to the most current and accurate information.
 
 ### Card collection system
-•	As users visit different places, they can collect virtual cards that describe each location, such as mountain huts, peaks, and historical sites.
-•	The card collection system not only serves as a record of places visited, but also adds an element of fun and motivation.
+- As users visit different places, they can collect virtual cards that describe each location, such as mountain huts, peaks, and historical sites.
+- The card collection system not only serves as a record of places visited, but also adds an element of fun and motivation.
 
 ### Hike Documentation
-•	Each hike is meticulously documented, including trail details, photos, and user experiences.
-•	Users can share their hiking experiences and insights, creating a collaborative and supportive community.
+- Each hike is meticulously documented, including trail details, photos, and user experiences.
+- Users can share their hiking experiences and insights, creating a collaborative and supportive community.
 
 ### Points and Levels
-•	Users earn points for completing hikes and collecting maps, which contribute to their overall level within the app.
-•	The points system promotes a sense of accomplishment and encourages users to explore more trails and collect more maps.
+- Users earn points for completing hikes and collecting maps, which contribute to their overall level within the app.
+- The points system promotes a sense of accomplishment and encourages users to explore more trails and collect more maps.
 
 
 
