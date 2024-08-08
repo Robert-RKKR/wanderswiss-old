@@ -18,10 +18,6 @@ from components.base.validators.base_validator import NameValueValidator
 # WanderSwiss - base models import:
 from components.base.models.status_model import StatusBasedModel
 
-# Function to convert camel case to space-separated words:
-def camel_case_to_spaces(name):
-    return re.sub(r'(?<!^)(?=[A-Z])', ' ', name).replace('_', ' ')
-
 
 # Identification models class:
 class IdentificationBaseModel(StatusBasedModel):
@@ -84,16 +80,22 @@ class IdentificationBaseModel(StatusBasedModel):
     )
     is_dynamic = models.BooleanField(
         verbose_name=_('Is dynamic'),
-        help_text=_('Indicates if this device was dynamically created. '
-                    'Dynamic devices are often generated based on specific '
+        help_text=_('Indicates if this device was dynamically created. '\
+                    'Dynamic devices are often generated based on specific '\
                     'conditions or user input at runtime.'),
         default=False,
     )
 
     def __init__(self, *args, **kwargs):
+
+        # Helper function to convert camel case to space-separated words:
+        def camel_case_to_spaces(name):
+            return re.sub(r'(?<!^)(?=[A-Z])', ' ', name).replace('_', ' ')
+
         super().__init__(*args, **kwargs)
         if not self.description:
-            self.description = f'{camel_case_to_spaces(self.__class__.__name__)} default description.'
+            self.description = f'{camel_case_to_spaces(self.__class__.__name__)} '\
+            'default description.'
 
     # object representation:
     def __repr__(self) -> str:
