@@ -20,7 +20,7 @@ class TrialModel(IdentificationBaseModel):
         verbose_name_plural = 'Trials'
 
         # Default ordering:
-        ordering = ['-timestamp']
+        ordering = ['-created']
 
         # Overwrite default permissions:
         default_permissions = ()
@@ -32,10 +32,11 @@ class TrialModel(IdentificationBaseModel):
     # Relation with other models:
     routes = models.ManyToManyField(
         RouteModel, 
-        through = _('TrialRouteModel'), 
+        through = 'TrialRouteModel', 
         verbose_name = _('Routes'), 
         help_text = _('Routes that are part of the trial.')
     )
+
 
 class TrialRouteModel(models.Model):
 

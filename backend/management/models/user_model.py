@@ -16,11 +16,11 @@ from django.db import models
 # WanderSwiss - manager class import:
 from management.managers.user_manager import UserModelManager
 
-# WanderSwiss - base models import:
-from wanderswiss.base.models.base_model import BaseModel
-
 # WanderSwiss - choices import:
 from wanderswiss.base.constants.user import UserRoleChoices
+
+# WanderSwiss - base models import:
+from wanderswiss.base.models.base_model import BaseModel
 
 
 # User model class:
@@ -92,7 +92,8 @@ class UserModel(BaseModel, AbstractBaseUser, PermissionsMixin):
     role = models.IntegerField(
         choices = UserRoleChoices.choices,
         verbose_name = _('Role'),
-        help_text = _('User role.')
+        help_text = _('User role.'),
+        default=UserRoleChoices.USER
     )
 
     # Main administrator information:

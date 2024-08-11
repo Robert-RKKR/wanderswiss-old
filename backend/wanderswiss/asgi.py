@@ -1,16 +1,18 @@
-"""
-ASGI config for wanderswiss project.
-
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/5.0/howto/deployment/asgi/
-"""
-
+# Python - library import:
 import os
 
+# Django - asgi import:
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wanderswiss.settings')
+# Channels - import:
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.auth import AuthMiddlewareStack
 
-application = get_asgi_application()
+# Capybara - routing import:
+from notification.routing import ws_urlpatterns
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wanderswiss.settings')
+application = ProtocolTypeRouter({
+    'http': get_asgi_application(),
+    'websocket': AuthMiddlewareStack(URLRouter(ws_urlpatterns)),
+})

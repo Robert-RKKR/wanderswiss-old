@@ -80,24 +80,20 @@ export DJANGO_SETTINGS_MODULE=capybara.settings
 ```bash
 pip install django
 pip install django-jazzmin
-pip install django-json-widget
-pip install django-jsonform
 pip install django-channels
 pip install channels_redis
 pip install django-celery-beat
 pip install psycopg2-binary
+pip install django-json-widget
+pip install django-jsonform
 pip install colorama
 pip install pytest-django
 pip install djangorestframework
-pip install django-filter
-pip install drf-spectacular
 pip install djangorestframework-extensions
-pip install pyyaml
 pip install cryptography
-pip install xmltodict
 pip install jinja2
-pip install pdfkit
-pip install matplotlib
+pip install django-filter
+pip install whitenoise
 ```
 
 ## Other information

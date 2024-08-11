@@ -6,8 +6,8 @@ from django.core.management.base import BaseCommand
 from django.contrib.auth.models import Permission
 from django.contrib.auth.models import Group
 
-# Capybara - management model import:
-from management.models.user_model import AdministratorModel
+# WanderSwiss - management model import:
+from management.models.user_model import UserModel
 
 
 # Command class:
@@ -62,13 +62,13 @@ class Command(BaseCommand):
         password = 'admin'
 
         # Check if administrator exist:
-        if AdministratorModel.objects.filter(name=username).exists():
+        if UserModel.objects.filter(name=username).exists():
             # Get the administrator object:
-            admin = AdministratorModel.objects.get(name=username)
+            admin = UserModel.objects.get(name=username)
             # Delete the administrator object:
             admin.delete()
         try: # Try to create a nwe administrator:
-            administrator = AdministratorModel.objects.create_superuser(
+            administrator = UserModel.objects.create_superuser(
                 username, email, password)
         except Exception as exception:
             self.stdout.write(self.style.ERROR(f'2.1: {exception}'))

@@ -12,11 +12,11 @@ from django.template.defaultfilters import slugify
 from django.db import models
 
 # WanderSwiss - base validators Import:
-from components.base.validators.base_validator import DescriptionValueValidator
-from components.base.validators.base_validator import NameValueValidator
+from wanderswiss.base.validators.base_validator import DescriptionValueValidator
+from wanderswiss.base.validators.base_validator import NameValueValidator
 
 # WanderSwiss - base models import:
-from components.base.models.status_model import StatusBasedModel
+from wanderswiss.base.models.status_model import StatusBasedModel
 
 
 # Identification models class:

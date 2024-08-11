@@ -44,8 +44,7 @@ class BaseModel(models.Model):
         return cls.dashboard_model_data
     
     def dedicated_operation(self):
-        raise NotImplementedError(
-            'Dedicated operation has not been yet implemented.')
+        return None
     
     def save(self, *args, **kwargs):
         # Run dedicated operation before clean:

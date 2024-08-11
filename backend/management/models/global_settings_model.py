@@ -266,21 +266,21 @@ class GlobalSettingsModel(BaseModel):
         # Update global settings dictionary:
         global_settings.update(data)
 
-    def _update_celery_schedule(self):
-        from django_celery_beat.models import PeriodicTask, IntervalSchedule
+    # def _update_celery_schedule(self):
+    #     from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
-        interval, created = IntervalSchedule.objects.get_or_create(
-            every=self.collecting_system_data_interval,
-            period=IntervalSchedule.MINUTES,
-        )
+    #     interval, created = IntervalSchedule.objects.get_or_create(
+    #         every=self.collecting_system_data_interval,
+    #         period=IntervalSchedule.MINUTES,
+    #     )
 
-        PeriodicTask.objects.update_or_create(
-            name='collect_system_metrics',
-            defaults={
-                'interval': interval,
-                'task': 'collect_system_metrics',
-            }
-        )
+    #     PeriodicTask.objects.update_or_create(
+    #         name='collect_system_metrics',
+    #         defaults={
+    #             'interval': interval,
+    #             'task': 'collect_system_metrics',
+    #         }
+    #     )
 
 # Collect global settings helper function:
 def collect_global_settings(

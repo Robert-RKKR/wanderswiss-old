@@ -9,9 +9,10 @@ from wanderswiss.base.models.identification_model import IdentificationBaseModel
 
 # WanderSwiss - choices import:
 from wanderswiss.base.constants.regions import RegionChoices
+from wanderswiss.base.constants.road import RoadTypeChoices
 
 # WanderSwiss - models import:
-from cards.models.card_model import CardModel
+from achievement.models.card_model import CardModel
 
 
 class RouteModel(IdentificationBaseModel):
@@ -23,7 +24,7 @@ class RouteModel(IdentificationBaseModel):
         verbose_name_plural = 'Routes'
 
         # Default ordering:
-        ordering = ['-timestamp']
+        ordering = ['-created']
 
         # Overwrite default permissions:
         default_permissions = ()

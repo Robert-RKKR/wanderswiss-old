@@ -1,0 +1,26 @@
+- test_name: Log test one.
+  test_information:
+    test_app_name: notification
+    test_model_name: LogModel
+    test_result: True
+    test_dependents: False
+  test_data:
+    message: Test log message.
+    additional_data:
+      123:
+        - 1
+        - 2
+      test_data: object
+- test_name: Log test two.
+  test_information:
+    test_app_name: notification
+    test_model_name: LogModel
+    test_result: True
+    test_dependents: False
+  test_data:
+    message: Test log message.
+    additional_data:
+      234:
+        - 1
+        - 2
+      test_data: object

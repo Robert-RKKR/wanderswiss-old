@@ -1,6 +1,9 @@
 # Django - user models import:
 from django.contrib.auth.models import BaseUserManager
 
+# WanderSwiss - choices import:
+from wanderswiss.base.constants.user import UserRoleChoices
+
 
 # User model manager class:
 class UserModelManager(BaseUserManager):
@@ -16,6 +19,7 @@ class UserModelManager(BaseUserManager):
     def create_superuser(self, name, email, password):
         """Create and return a new superuser."""
         administrator = self.create_user(name, email, password)
+        administrator.role = UserRoleChoices.ADMINISTRATOR
         administrator.is_staff = True
         administrator.is_superuser = True
         administrator.save(using=self._db)

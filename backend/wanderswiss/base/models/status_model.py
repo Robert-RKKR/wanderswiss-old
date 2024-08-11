@@ -5,10 +5,10 @@ from django.utils.translation import gettext_lazy as _
 from django.db import models
 
 # WanderSwiss - base manager import:
-from components.base.managers.base_manager import BaseManager
+from wanderswiss.base.managers.base_manager import BaseManager
 
 # WanderSwiss - base models import:
-from components.base.models.base_model import BaseModel
+from wanderswiss.base.models.base_model import BaseModel
 
 
 # Status models class:
