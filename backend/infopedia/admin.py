@@ -54,9 +54,22 @@ class ArticleAdmin(BaseAdmin):
         'name', 'description',
     )
     fieldsets = (
-        ('Basic information', {
+        ('Base', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'created', 'updated', 'name', 'description',)
+            'fields': ('is_active', 'created', 'updated', 'name', 'description',
+                       'category', 'status', 'published',)
+        }),
+        ('Access', {
+            'classes': ('wide', 'extrapretty',),
+            'fields': ('access',)
+        }),
+        ('Content', {
+            'classes': ('wide', 'extrapretty',),
+            'fields': ('introtext', 'content', 'language', 'metadata',)
+        }),
+        (' Statistic', {
+            'classes': ('wide', 'extrapretty',),
+            'fields': ('hits',)
         }),
     )
     readonly_fields = (

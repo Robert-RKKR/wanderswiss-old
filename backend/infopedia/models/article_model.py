@@ -36,12 +36,12 @@ class ArticleModel(IdentificationBaseModel):
     
     # Relation with other models:
     category = models.ForeignKey(
-        CategoryModel, 
-        on_delete = models.SET_NULL, 
-        null = True, 
-        blank = True, 
+        CategoryModel,
+        on_delete = models.SET_NULL,
         verbose_name = _('Category'),
         help_text = _('Xxx.'),
+        null = True,
+        blank = True,
     )
 
     # Status related values:
@@ -52,20 +52,26 @@ class ArticleModel(IdentificationBaseModel):
         default=StatusChoices.DRAFT
     )
     published = models.DateTimeField(
-        null = True, 
-        blank = True, 
         verbose_name = _('Publish Down'),
         help_text = _('Xxx.'),
+        null = True,
+        blank = True,
     )
 
     # Access related values:
     access = models.IntegerField(
-        default = 1, 
         verbose_name = _('Access Level'),
         help_text = _('Xxx.'),
+        default = 1,
     )
 
     # Content related values:
+    introtext = models.TextField(
+        verbose_name = _('Intro'),
+        help_text = _('Xxx.'),
+        null = True,
+        blank = True,
+    )
     content = models.TextField(
         verbose_name = _('Content'),
         help_text = _('Xxx.'),
@@ -86,7 +92,20 @@ class ArticleModel(IdentificationBaseModel):
 
     # Statistic related values:
     hits = models.IntegerField(
-        default=0,
         verbose_name = _('Counted visits'),
-        help_text = _('Xxx.')
+        help_text = _('Xxx.'),
+        default=0,
     )
+
+    def dedicated_operation(self):
+        # Call the original dedicated_operation method:
+        super().dedicated_operation()
+        # Create introtext if not define:
+        self.collect_introtext()
+
+    def collect_introtext(self):
+        # Check if introtext has been provided:
+        print(f'self.introtext: {self.introtext}')
+        if not self.introtext:
+            # Create introtext based on content:
+            self.introtext = self.content[:123]
