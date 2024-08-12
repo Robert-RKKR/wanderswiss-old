@@ -7,6 +7,7 @@ from wanderswiss.base.admins.based_admin import BaseAdmin
 # Capybara - infopedia model import:
 from infopedia.models.category_model import CategoryModel
 from infopedia.models.article_model import ArticleModel
+from infopedia.models.choice_model import ChoiceModel
 from infopedia.models.tag_model import TagModel
 
 
@@ -70,6 +71,34 @@ class ArticleAdmin(BaseAdmin):
         (' Statistic', {
             'classes': ('wide', 'extrapretty',),
             'fields': ('hits',)
+        }),
+    )
+    readonly_fields = (
+        'created', 'updated',
+    )
+    empty_value_display = '--None--'
+
+
+@admin.register(ChoiceModel)
+class ChoiceAdmin(BaseAdmin):
+
+    list_display = (
+        'name', 'is_active', 'created', 'updated',
+    )
+    list_display_links = (
+        'name',
+    )
+    list_filter = (
+        'is_active',
+    )
+    search_fields = (
+        'name', 'description',
+    )
+    fieldsets = (
+        ('Basic information', {
+            'classes': ('wide', 'extrapretty',),
+            'fields': ('is_active', 'created', 'updated', 'name', 'description',
+                       'type',)
         }),
     )
     readonly_fields = (

@@ -8,10 +8,11 @@ from django.db import models
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
 
 # WanderSwiss - choices import:
-from wanderswiss.base.constants.regions import RegionChoices
+from wanderswiss.base.constants.choices import ChoicesChoices
 from wanderswiss.base.constants.road import RoadTypeChoices
 
 # WanderSwiss - models import:
+from infopedia.models.choice_model import ChoiceModel
 from achievement.models.card_model import CardModel
 
 
@@ -40,15 +41,34 @@ class RouteModel(IdentificationBaseModel):
         help_text = _('Cards related to the route.')
     )
 
+    # Choice relation:
+    regions = models.ManyToManyField(
+        ChoiceModel,
+        verbose_name = _('Regions'),
+        help_text = _('Region(s) through which the route passes.'),
+        limit_choices_to={'type': ChoicesChoices.REGION}
+    )
+    start_point = models.ForeignKey(
+        ChoiceModel, 
+        related_name = _('route_start'), 
+        on_delete = models.CASCADE, 
+        verbose_name = _('Start Point'), 
+        help_text = _('Starting point of the route.'),
+        limit_choices_to={'type': ChoicesChoices.POI}
+    )
+    end_point = models.ForeignKey(
+        ChoiceModel, 
+        related_name = _('route_end'), 
+        on_delete = models.CASCADE, 
+        verbose_name = _('End Point'), 
+        help_text = _('Ending point of the route.'),
+        limit_choices_to={'type': ChoicesChoices.POI}
+    )
+
     # Model based values:
     gps_data = models.TextField(
         verbose_name = _('GPS Data'),
         help_text = _('GPS data in XML format.')
-    )
-    regions = models.IntegerField(
-        choices = RegionChoices.choices,
-        verbose_name = _('Regions'),
-        help_text = _('Region(s) through which the route passes.')
     )
     distance = models.FloatField(
         verbose_name = _('Distance (km)'), 
@@ -74,18 +94,4 @@ class RouteModel(IdentificationBaseModel):
         choices = RoadTypeChoices.choices, 
         verbose_name = _('Roads Type'), 
         help_text = _('Type of roads on the route.')
-    )
-    start_point = models.ForeignKey(
-        'self', 
-        related_name = _('route_start'), 
-        on_delete = models.CASCADE, 
-        verbose_name = _('Start Point'), 
-        help_text = _('Starting point of the route.')
-    )
-    end_point = models.ForeignKey(
-        'self', 
-        related_name = _('route_end'), 
-        on_delete = models.CASCADE, 
-        verbose_name = _('End Point'), 
-        help_text = _('Ending point of the route.')
     )

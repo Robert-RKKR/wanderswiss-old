@@ -11,7 +11,6 @@ from wanderswiss.base.constants.color import ColorChoices
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
 
 
-# Site model class:
 class TagModel(IdentificationBaseModel):
 
     class Meta:

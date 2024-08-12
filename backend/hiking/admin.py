@@ -54,9 +54,13 @@ class RouteAdmin(BaseAdmin):
         'name', 'description',
     )
     fieldsets = (
-        ('Basic information', {
+        ('Base', {
             'classes': ('wide', 'extrapretty',),
             'fields': ('is_active', 'created', 'updated', 'name', 'description',)
+        }),
+        ('Basic information', {
+            'classes': ('wide', 'extrapretty',),
+            'fields': ('regions', 'start_point', 'end_point',)
         }),
     )
     readonly_fields = (
