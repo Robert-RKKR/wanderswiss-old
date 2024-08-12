@@ -17,6 +17,6 @@ class ChangeLogFilter(BaseFilter):
             'object_id': ['exact'],
             'object_representation': ['exact', 'icontains'],
             'timestamp': ['exact', 'icontains', 'lt', 'gt'],
-            'administrator': ['exact'],
+            'user': ['exact'],
             'action_type': ['exact'],
         }

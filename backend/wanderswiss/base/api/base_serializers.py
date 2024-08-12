@@ -12,8 +12,8 @@ from django.core.exceptions import MultipleObjectsReturned
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import FieldError
 
-# Capybara - helper function import:
-from capybara.base.helper.filters import dict_to_filter_params
+# WanderSwiss - helper function import:
+from wanderswiss.base.helper.filters import dict_to_filter_params
 
 
 # Base serializer class:

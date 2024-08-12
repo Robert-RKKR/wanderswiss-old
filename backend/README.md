@@ -86,6 +86,7 @@ pip install django-celery-beat
 pip install psycopg2-binary
 pip install django-json-widget
 pip install django-jsonform
+pip install drf-spectacular
 pip install colorama
 pip install pytest-django
 pip install djangorestframework

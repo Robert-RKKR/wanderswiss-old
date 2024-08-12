@@ -27,6 +27,15 @@ class BaseIntegerChoices(IntegerChoices):
         # If not found return False value:
         return False
 
+    @classmethod
+    def standard_value(cls):
+        list_of_values = []
+        # Iterate thru all chaises:
+        for choice in cls.choices:
+            list_of_values.append((choice[0], choice[1]))
+        # Return all collected values:
+        return list_of_values
+
 
 # Base string choices class:
 class BaseStringChoices(TextChoices):
@@ -48,3 +57,12 @@ class BaseStringChoices(TextChoices):
                 return choice[0]
         # If not found return False value:
         return False
+
+    @classmethod
+    def standard_value(cls):
+        list_of_values = []
+        # Iterate thru all chaises:
+        for choice in cls.choices:
+            list_of_values.append((choice[0], choice[1]))
+        # Return all collected values:
+        return list_of_values

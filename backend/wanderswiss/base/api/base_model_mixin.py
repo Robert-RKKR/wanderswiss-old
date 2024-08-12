@@ -23,16 +23,16 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework import status
 
-# Capybara - constance import:
-from capybara.base.constants.action_type import ActionTypeChoices
+# WanderSwiss - constance import:
+from wanderswiss.base.constants.action_type import ActionTypeChoices
 
-# Capybara - collect object information import:
+# WanderSwiss - collect object information import:
 from notification.object_collector import collect_object_data
 
-# Capybara - notification import:
+# WanderSwiss - notification import:
 from notification.notification import Notification
 
-# Capybara - log change import:
+# WanderSwiss - log change import:
 from notification.changer import log_change
 
 # Init API notification:

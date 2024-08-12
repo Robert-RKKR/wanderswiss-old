@@ -7,6 +7,10 @@ from django.db import models
 # WanderSwiss - base model import:
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
 
+# WanderSwiss - choices import:
+from wanderswiss.base.constants.article import StatusChoices
+from wanderswiss.base.constants.language import LanguageChoices
+
 # WanderSwiss - models import:
 from infopedia.models.category_model import CategoryModel
 from management.models.user_model import UserModel
@@ -44,10 +48,6 @@ class ArticleModel(IdentificationBaseModel):
     content = models.TextField(
         verbose_name = _('Content')
     )
-    state = models.BooleanField(
-        default = True, 
-        verbose_name = _('Published')
-    )
     published = models.DateTimeField(
         null = True, 
         blank = True, 
@@ -63,5 +63,21 @@ class ArticleModel(IdentificationBaseModel):
         verbose_name = _('Metadata')
     )
 
-    def __str__(self):
-        return self.title
+    status = models.IntegerField(
+        choices=StatusChoices.choices,
+        verbose_name = _('Xxx'),
+        help_text = _('Xxx.'),
+        default=StatusChoices.DRAFT
+    )
+    hits = models.IntegerField(
+        default=0,
+        verbose_name = _('Xxx'),
+        help_text = _('Xxx.')
+    )
+    language = models.CharField(
+        max_length=2,
+        verbose_name = _('Xxx'),
+        help_text = _('Xxx.'),
+        choices=LanguageChoices,
+        default=LanguageChoices.EN
+    )

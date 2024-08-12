@@ -1,0 +1,43 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <!-- Basic page data -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Page title -->
+        <title>Capybara - {{ page_title }}</title>
+
+        <!-- Favicon links -->
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'ico/favicon/favicon-32x32.png' %}">
+        <meta name="theme-color" content="#ffffff">
+
+    </head>
+
+    <body>
+
+        <div class="profile">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    
+                    <div class="page-title fs-5 fw-bold mb-4">
+                        Output:
+                    </div>
+                    
+                    <pre>
+                        <p>{{output}}</p>
+                    </pre>
+                    
+
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -16,12 +16,12 @@ from rest_framework import viewsets
 from rest_framework.filters import OrderingFilter
 from rest_framework.filters import SearchFilter
 
-# Capybara - base model mixin import:
-from capybara.base.api.base_model_mixin import BaseRetrieveModelMixin
-from capybara.base.api.base_model_mixin import BaseDestroyModelMixin
-from capybara.base.api.base_model_mixin import BaseUpdateModelMixin
-from capybara.base.api.base_model_mixin import BaseCreateModelMixin
-from capybara.base.api.base_model_mixin import BaseListModelMixin
+# WanderSwiss - base model mixin import:
+from wanderswiss.base.api.base_model_mixin import BaseRetrieveModelMixin
+from wanderswiss.base.api.base_model_mixin import BaseDestroyModelMixin
+from wanderswiss.base.api.base_model_mixin import BaseUpdateModelMixin
+from wanderswiss.base.api.base_model_mixin import BaseCreateModelMixin
+from wanderswiss.base.api.base_model_mixin import BaseListModelMixin
 
 
 # Base ModelViewSet model:

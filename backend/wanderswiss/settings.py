@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework',
     'django_filters',
-    # 'drf_spectacular',
+    'drf_spectacular',
 
     # WanderSwiss applications:
     'notification.apps.NotificationConfig',
@@ -120,8 +120,8 @@ ASGI_APPLICATION = 'wanderswiss.asgi.application'
 
 # Rest framework configuration:
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'capybara.base.api.base_exception_handler.custom_exception_handler',
-    'DEFAULT_PAGINATION_CLASS': 'capybara.base.api.base_pagination.BasePaginator',
+    'EXCEPTION_HANDLER': 'wanderswiss.base.api.base_exception_handler.custom_exception_handler',
+    'DEFAULT_PAGINATION_CLASS': 'wanderswiss.base.api.base_pagination.BasePaginator',
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -135,7 +135,7 @@ REST_FRAMEWORK = {
 
 # Schema configuration:
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Capybara REST API',
+    'TITLE': 'Wander Swiss REST API',
     'LICENSE': {'name': 'Apache v2 License'},
     'VERSION': VERSION,
     'COMPONENT_SPLIT_REQUEST': True,
@@ -182,11 +182,8 @@ USE_L10N = True
 
 # Language configuration:
 LANGUAGE_CODE = 'en-us'
-LANGUAGES = [
-    ('en', 'English'),
-    ('de', 'German'),
-    ('pl', 'Polish'),
-]
+from wanderswiss.base.constants.language import LanguageChoices
+LANGUAGES = LanguageChoices.standard_value()
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]

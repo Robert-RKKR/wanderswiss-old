@@ -1,22 +1,48 @@
-"""
-URL configuration for wanderswiss project.
+# Rest framework - views import:
+from rest_framework.authtoken.views import obtain_auth_token
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+# Django - import:
+from django.utils.translation import gettext_lazy as _
+from django.conf.urls.i18n import i18n_patterns
+from django.contrib.auth import views as auth_views
+
+# Drf spectacular - view import:
+from drf_spectacular.views import SpectacularSwaggerView
+from drf_spectacular.views import SpectacularRedocView
+from drf_spectacular.views import SpectacularAPIView
+
+# Django - url import:
 from django.contrib import admin
+from django.urls import include
 from django.urls import path
 
+
+# URLs registration:
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # Add the path for language switching:
+    path('i18n/', include('django.conf.urls.i18n')),
+
+    # API - token generator registration:
+    path('api-admin/token-generate/', obtain_auth_token, name='token_generate'),
+
+    # API - schema registration:
+    path('api-schema/', SpectacularAPIView.as_view(), name='api-schema'),
+    path('api-docs/',
+        SpectacularSwaggerView.as_view(url_name='api-schema'),
+        name='api_docs'),
+    path('api-rdocs/',
+        SpectacularRedocView.as_view(url_name='api-schema'),
+        name='api_rdocs'),
+
+    # API views registration:
+    path('api-notification/', include('notification.api.urls')),
 ]
+
+urlpatterns += i18n_patterns(
+
+    # Django - admin registration:
+    path('admin/', admin.site.urls),
+
+    # Test server registration:
+    path('test/', include('hiking.urls'))
+)
