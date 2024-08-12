@@ -6,12 +6,16 @@ from django.db import models
 
 # WanderSwiss - base model import:
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
+from wanderswiss.base.models.status_model import StatusBasedModel
 
 # WanderSwiss - models import:
 from hiking.models.trial_model import TrialModel
 
 
-class MultiDayTrialModel(IdentificationBaseModel):
+# WanderSwiss dedicated model:
+class MultiDayTrialModel(
+    StatusBasedModel,
+    IdentificationBaseModel):
 
     class Meta:
         

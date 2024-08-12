@@ -9,5 +9,9 @@ from django.utils.translation import gettext_lazy as _
 class ChoicesChoices(BaseIntegerChoices):
 
     # Choices values:
-    REGION = 1, _('Region')
-    POI = 2, _('Point of Interest')
+    ACHIEVEMENT_DIFFICULTY = 1, _('Achievement difficulty')
+    CARD_DIFFICULTY = 2, _('Card difficulty')
+    POI = 3, _('Point of Interest')
+    CARD_TYPE = 4, _('Cart type')
+    COUNTRY = 5, _('Country')
+    REGION = 6, _('Region')

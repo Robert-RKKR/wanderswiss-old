@@ -6,6 +6,7 @@ from django.db import models
 
 # WanderSwiss - base model import:
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
+from wanderswiss.base.models.status_model import StatusBasedModel
 
 # WanderSwiss - choices import:
 from wanderswiss.base.constants.choices import ChoicesChoices
@@ -16,7 +17,10 @@ from infopedia.models.choice_model import ChoiceModel
 from achievement.models.card_model import CardModel
 
 
-class RouteModel(IdentificationBaseModel):
+# WanderSwiss dedicated model:
+class RouteModel(
+    StatusBasedModel,
+    IdentificationBaseModel):
 
     class Meta:
         
@@ -37,7 +41,7 @@ class RouteModel(IdentificationBaseModel):
     # Relation with other models:
     cards = models.ManyToManyField(
         CardModel, 
-        verbose_name = _('Cards'), 
+        verbose_name = _('Cards'),
         help_text = _('Cards related to the route.')
     )
 
@@ -45,24 +49,25 @@ class RouteModel(IdentificationBaseModel):
     regions = models.ManyToManyField(
         ChoiceModel,
         verbose_name = _('Regions'),
+        related_name='route_regions',
         help_text = _('Region(s) through which the route passes.'),
         limit_choices_to={'type': ChoicesChoices.REGION}
     )
     start_point = models.ForeignKey(
         ChoiceModel, 
-        related_name = _('route_start'), 
-        on_delete = models.CASCADE, 
-        verbose_name = _('Start Point'), 
+        verbose_name = _('Start Point'),
+        related_name='route_start_point',
         help_text = _('Starting point of the route.'),
-        limit_choices_to={'type': ChoicesChoices.POI}
+        limit_choices_to={'type': ChoicesChoices.POI},
+        on_delete = models.PROTECT, 
     )
     end_point = models.ForeignKey(
         ChoiceModel, 
-        related_name = _('route_end'), 
-        on_delete = models.CASCADE, 
-        verbose_name = _('End Point'), 
+        verbose_name = _('End Point'),
+        related_name='route_end_point',
         help_text = _('Ending point of the route.'),
-        limit_choices_to={'type': ChoicesChoices.POI}
+        limit_choices_to={'type': ChoicesChoices.POI},
+        on_delete = models.PROTECT,
     )
 
     # Model based values:

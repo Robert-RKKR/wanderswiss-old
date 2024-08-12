@@ -6,6 +6,7 @@ from django.db import models
 
 # WanderSwiss - base model import:
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
+from wanderswiss.base.models.status_model import StatusBasedModel
 
 # WanderSwiss - choices import:
 from wanderswiss.base.constants.article import StatusChoices
@@ -15,7 +16,10 @@ from wanderswiss.base.constants.language import LanguageChoices
 from infopedia.models.category_model import CategoryModel
 
 
-class ArticleModel(IdentificationBaseModel):
+# WanderSwiss dedicated model:
+class ArticleModel(
+    StatusBasedModel,
+    IdentificationBaseModel):
 
     class Meta:
         

@@ -5,14 +5,14 @@ from django.utils.translation import gettext_lazy as _
 from django.db import models
 
 # WanderSwiss - base models import:
-from wanderswiss.base.models.identification_model import IdentificationBaseModel
+from wanderswiss.base.models.base_model import BaseModel
 
 # WanderSwiss - management model import:
 from management.models.user_model import UserModel
 
 
 # User models class:
-class UserBaseModel(IdentificationBaseModel):
+class UserBaseModel(BaseModel):
 
     class Meta:
         

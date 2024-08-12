@@ -16,11 +16,11 @@ from wanderswiss.base.validators.base_validator import DescriptionValueValidator
 from wanderswiss.base.validators.base_validator import NameValueValidator
 
 # WanderSwiss - base models import:
-from wanderswiss.base.models.status_model import StatusBasedModel
+from wanderswiss.base.models.base_model import BaseModel
 
 
 # Identification models class:
-class IdentificationBaseModel(StatusBasedModel):
+class IdentificationBaseModel(BaseModel):
 
     class Meta:
         
