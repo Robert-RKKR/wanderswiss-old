@@ -13,7 +13,6 @@ from wanderswiss.base.constants.language import LanguageChoices
 
 # WanderSwiss - models import:
 from infopedia.models.category_model import CategoryModel
-from management.models.user_model import UserModel
 
 
 class ArticleModel(IdentificationBaseModel):
@@ -41,43 +40,53 @@ class ArticleModel(IdentificationBaseModel):
         on_delete = models.SET_NULL, 
         null = True, 
         blank = True, 
-        verbose_name = _('Category')
+        verbose_name = _('Category'),
+        help_text = _('Xxx.'),
     )
 
-    # Model based values:
-    content = models.TextField(
-        verbose_name = _('Content')
+    # Status related values:
+    status = models.IntegerField(
+        choices=StatusChoices.choices,
+        verbose_name = _('Status'),
+        help_text = _('Xxx.'),
+        default=StatusChoices.DRAFT
     )
     published = models.DateTimeField(
         null = True, 
         blank = True, 
-        verbose_name = _('Publish Down')
+        verbose_name = _('Publish Down'),
+        help_text = _('Xxx.'),
     )
+
+    # Access related values:
     access = models.IntegerField(
         default = 1, 
-        verbose_name = _('Access Level')
+        verbose_name = _('Access Level'),
+        help_text = _('Xxx.'),
+    )
+
+    # Content related values:
+    content = models.TextField(
+        verbose_name = _('Content'),
+        help_text = _('Xxx.'),
+    )
+    language = models.CharField(
+        max_length=2,
+        verbose_name = _('Language'),
+        help_text = _('Xxx.'),
+        choices=LanguageChoices,
+        default=LanguageChoices.EN
     )
     metadata = models.JSONField(
         default = dict, 
         blank = True, 
-        verbose_name = _('Metadata')
+        verbose_name = _('Metadata'),
+        help_text = _('Xxx.'),
     )
 
-    status = models.IntegerField(
-        choices=StatusChoices.choices,
-        verbose_name = _('Xxx'),
-        help_text = _('Xxx.'),
-        default=StatusChoices.DRAFT
-    )
+    # Statistic related values:
     hits = models.IntegerField(
         default=0,
-        verbose_name = _('Xxx'),
+        verbose_name = _('Counted visits'),
         help_text = _('Xxx.')
-    )
-    language = models.CharField(
-        max_length=2,
-        verbose_name = _('Xxx'),
-        help_text = _('Xxx.'),
-        choices=LanguageChoices,
-        default=LanguageChoices.EN
     )
