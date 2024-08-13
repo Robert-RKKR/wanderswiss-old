@@ -8,6 +8,9 @@ from django.db import models
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
 from wanderswiss.base.models.status_model import StatusBasedModel
 
+# WanderSwiss - connection template validator import:
+from wanderswiss.base.validators.json_validators import json_list_validator
+
 # WanderSwiss - choices import:
 from wanderswiss.base.constants.choices import ChoicesChoices
 
@@ -53,5 +56,5 @@ class AchievementModel(
     conditions = models.JSONField(
         verbose_name=_('Conditions'),
         help_text=_('Xxx.'),
-        # validators=[json_list_validator]
+        validators=[json_list_validator]
     )

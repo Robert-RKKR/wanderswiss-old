@@ -70,14 +70,14 @@ class CardModel(
         ChoiceModel,
         verbose_name = _('Regions'),
         related_name='card_regions',
-        help_text = _('Region(s) through which the route passes.'),
+        help_text = _('Regions through which the route passes.'),
         limit_choices_to={'type': ChoicesChoices.REGION}
     )
-    countrys = models.ManyToManyField(
+    countries = models.ManyToManyField(
         ChoiceModel,
-        verbose_name = _('Countrys'),
-        related_name='card_countrys',
-        help_text = _('Country(s) through which the route passes.'),
+        verbose_name = _('Countries'),
+        related_name='card_countries',
+        help_text = _('Countries through which the route passes.'),
         limit_choices_to={'type': ChoicesChoices.COUNTRY}
     )
 

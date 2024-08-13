@@ -34,7 +34,7 @@ CRYPTO_KEY = os.environ.get('CRYPTO_KEY',
 INSTALLED_APPS = [
     # Django Jazzmin:
     'jazzmin',
-    
+
     # Django apps:
     'django.contrib.admin',
     'django.contrib.auth',
