@@ -5,6 +5,9 @@ from .jazzmin import GLOBAL_JAZZMIN_SETTINGS
 from pathlib import Path
 import os
 
+# WanderSwiss - choices class import:
+from wanderswiss.base.constants.language import LanguageChoices
+
 # Main application constance's:
 APP_NAME = 'Wander Swiss'
 VERSION = '0.1a'
@@ -43,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'modeltranslation',
 
     # Celery and channels:
     'django_celery_beat',
@@ -182,8 +186,9 @@ USE_L10N = True
 
 # Language configuration:
 LANGUAGE_CODE = 'en-us'
-from wanderswiss.base.constants.language import LanguageChoices
 LANGUAGES = LanguageChoices.standard_value()
+MODELTRANSLATION_LANGUAGES = LanguageChoices.tuple_from_first_values()
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]

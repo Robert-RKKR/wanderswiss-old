@@ -1,14 +1,18 @@
 # Django - admin import:
+from modeltranslation.admin import TranslationAdmin
 from django.contrib import admin
 
 # WanderSwiss - base admin models import:
 from wanderswiss.base.admins.based_admin import BaseAdmin
 
-# Capybara - infopedia model import:
+# WanderSwiss - infopedia model import:
 from infopedia.models.category_model import CategoryModel
 from infopedia.models.article_model import ArticleModel
 from infopedia.models.choice_model import ChoiceModel
 from infopedia.models.tag_model import TagModel
+
+# WanderSwiss - translation import:
+from infopedia.translation.article_translation import ArticleTranslation
 
 
 # All admin classes:
@@ -40,7 +44,7 @@ class CategoryAdmin(BaseAdmin):
 
 
 @admin.register(ArticleModel)
-class ArticleAdmin(BaseAdmin):
+class ArticleAdmin(TranslationAdmin, BaseAdmin):
 
     list_display = (
         'name', 'is_active', 'created', 'updated',
@@ -66,7 +70,7 @@ class ArticleAdmin(BaseAdmin):
         }),
         ('Content', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('introtext', 'content', 'language', 'metadata',)
+            'fields': ('introtext', 'content', 'metadata',)
         }),
         (' Statistic', {
             'classes': ('wide', 'extrapretty',),

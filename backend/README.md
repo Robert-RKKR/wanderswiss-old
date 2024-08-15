@@ -84,6 +84,7 @@ pip install django-channels
 pip install channels_redis
 pip install django-celery-beat
 pip install psycopg2-binary
+pip install django-modeltranslation
 pip install django-json-widget
 pip install django-jsonform
 pip install drf-spectacular

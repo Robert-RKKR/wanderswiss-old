@@ -10,5 +10,5 @@ def test(request):
         'output': 'Hello RKKR!'
     }
     task_id = str(uuid.uuid4())
-    data['output'] = LanguageChoices.standard_value()
+    data['output'] = LanguageChoices.tuple_from_first_values()
     return render(request, 'hiking/test.html', data)
