@@ -43,7 +43,7 @@ class UserModel(BaseModel, AbstractBaseUser, PermissionsMixin):
     objects = UserModelManager()
     
     # Username main login attribute declaration:
-    USERNAME_FIELD = 'name'
+    USERNAME_FIELD = 'username'
 
     # Primary Key value:
     id = models.UUIDField(
@@ -97,10 +97,22 @@ class UserModel(BaseModel, AbstractBaseUser, PermissionsMixin):
     )
 
     # Main administrator information:
-    name = models.CharField(
-        verbose_name=_('Name'),
+    username = models.CharField(
+        verbose_name=_('Username'),
         help_text=_('The unique name of the administrator used for login '
                     'and identification.'),
+        max_length=64,
+        unique=True,
+    )
+    name = models.CharField(
+        verbose_name=_('First name'),
+        help_text=_('Xxx.'),
+        max_length=64,
+        unique=True,
+    )
+    surname = models.CharField(
+        verbose_name=_('Surname'),
+        help_text=_('Xxx.'),
         max_length=64,
         unique=True,
     )

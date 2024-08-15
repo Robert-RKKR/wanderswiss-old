@@ -9,16 +9,16 @@ from wanderswiss.base.constants.user import UserRoleChoices
 class UserModelManager(BaseUserManager):
     """ Manager for users. """
 
-    def create_user(self, name, email, password=None, **extra_fields):
+    def create_user(self, username, email, password=None, **extra_fields):
         """Create, save and return a new user."""
-        administrator = self.model(name=name, email=email, **extra_fields)
+        administrator = self.model(username=username, email=email, **extra_fields)
         administrator.set_password(password)
         administrator.save(using=self._db)
         return administrator
     
-    def create_superuser(self, name, email, password):
+    def create_superuser(self, username, email, password):
         """Create and return a new superuser."""
-        administrator = self.create_user(name, email, password)
+        administrator = self.create_user(username, email, password)
         administrator.role = UserRoleChoices.ADMINISTRATOR
         administrator.is_staff = True
         administrator.is_superuser = True

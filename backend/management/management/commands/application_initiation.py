@@ -62,9 +62,9 @@ class Command(BaseCommand):
         password = 'admin'
 
         # Check if administrator exist:
-        if UserModel.objects.filter(name=username).exists():
+        if UserModel.objects.filter(username=username).exists():
             # Get the administrator object:
-            admin = UserModel.objects.get(name=username)
+            admin = UserModel.objects.get(username=username)
             # Delete the administrator object:
             admin.delete()
         try: # Try to create a nwe administrator:

@@ -48,19 +48,19 @@ class UserSettingsAdmin(BaseAdmin):
 class UserAdmin(BaseAdmin):
 
     list_display = (
-        'pk', 'name', 'is_active', 'is_staff', 'email', 'created', 'updated'
+        'pk', 'username', 'name', 'surname', 'is_active', 'is_staff', 'email', 'created', 'updated'
     )
     list_filter = (
         'is_active',
     )
     search_fields = (
-        'name', 'description'
+        'username', 'description', 'name', 'surname',
     )
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
             'fields': ('is_active', 'is_staff', 'created',
-                'updated', 'name', 'email')
+                'updated', 'username', 'name', 'surname', 'email')
         }),
         ('Password', {
             'classes': ('wide', 'extrapretty',),
