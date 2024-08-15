@@ -10,7 +10,7 @@ class ChoicesChoices(BaseIntegerChoices):
 
     # Choices values:
     ACHIEVEMENT_DIFFICULTY = 1, _('Achievement difficulty')
-    CARD_DIFFICULTY = 2, _('Card difficulty')
+    HIKING_DIFFICULTY = 2, _('Hike route difficulty')
     POI = 3, _('Point of Interest')
     CARD_TYPE = 4, _('Cart type')
     COUNTRY = 5, _('Country')

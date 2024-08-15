@@ -56,11 +56,18 @@ class RouteAdmin(BaseAdmin):
     fieldsets = (
         ('Base', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'created', 'updated', 'name', 'description',)
+            'fields': ('is_active', 'created', 'updated',
+                        'name', 'description',)
         }),
-        ('Basic information', {
+        ('Localization', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('regions', 'start_point', 'end_point',)
+            'fields': ('start_point', 'middle_points', 'end_point',
+                        'regions', 'countries',)
+        }),
+        ('Hike data', {
+            'classes': ('wide', 'extrapretty',),
+            'fields': ('gps_data', 'distance', 'ascents', 'descents',
+                        'min_elevation', 'max_elevation', 'route_type',)
         }),
     )
     readonly_fields = (

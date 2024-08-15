@@ -6,6 +6,7 @@ from django.db.models import Max
 from django.db import models
 
 # WanderSwiss - base model import:
+from wanderswiss.base.models.gps_localization_model import GpsLocalizationBaseModel
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
 from wanderswiss.base.models.localization_model import LocalizationBaseModel
 from wanderswiss.base.models.status_model import StatusBasedModel
@@ -21,6 +22,7 @@ from infopedia.models.choice_model import ChoiceModel
 class CardModel(
     StatusBasedModel,
     IdentificationBaseModel,
+    GpsLocalizationBaseModel,
     LocalizationBaseModel):
 
     class Meta:
@@ -64,21 +66,7 @@ class CardModel(
         verbose_name = _('Difficulties'),
         related_name='card_difficulties',
         help_text = _('Xxx.'),
-        limit_choices_to={'type': ChoicesChoices.CARD_DIFFICULTY}
-    )
-    regions = models.ManyToManyField(
-        ChoiceModel,
-        verbose_name = _('Regions'),
-        related_name='card_regions',
-        help_text = _('Regions through which the route passes.'),
-        limit_choices_to={'type': ChoicesChoices.REGION}
-    )
-    countries = models.ManyToManyField(
-        ChoiceModel,
-        verbose_name = _('Countries'),
-        related_name='card_countries',
-        help_text = _('Countries through which the route passes.'),
-        limit_choices_to={'type': ChoicesChoices.COUNTRY}
+        limit_choices_to={'type': ChoicesChoices.HIKING_DIFFICULTY}
     )
 
     # Card details:

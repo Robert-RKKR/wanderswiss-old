@@ -6,11 +6,11 @@ from django.db import models
 
 # WanderSwiss - base model import:
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
+from wanderswiss.base.models.localization_model import LocalizationBaseModel
 from wanderswiss.base.models.status_model import StatusBasedModel
 
 # WanderSwiss - choices import:
 from wanderswiss.base.constants.choices import ChoicesChoices
-from wanderswiss.base.constants.road import RoadTypeChoices
 
 # WanderSwiss - models import:
 from infopedia.models.choice_model import ChoiceModel
@@ -20,7 +20,8 @@ from achievement.models.card_model import CardModel
 # WanderSwiss dedicated model:
 class RouteModel(
     StatusBasedModel,
-    IdentificationBaseModel):
+    IdentificationBaseModel,
+    LocalizationBaseModel):
 
     class Meta:
         
@@ -46,27 +47,35 @@ class RouteModel(
     )
 
     # Choice relation:
-    regions = models.ManyToManyField(
-        ChoiceModel,
-        verbose_name = _('Regions'),
-        related_name='route_regions',
-        help_text = _('Region(s) through which the route passes.'),
-        limit_choices_to={'type': ChoicesChoices.REGION}
-    )
     start_point = models.ForeignKey(
         ChoiceModel, 
-        verbose_name = _('Start Point'),
+        verbose_name = _('Start point'),
         related_name='route_start_point',
         help_text = _('Starting point of the route.'),
         limit_choices_to={'type': ChoicesChoices.POI},
         on_delete = models.PROTECT, 
     )
+    middle_points = models.ManyToManyField(
+        ChoiceModel, 
+        verbose_name = _('Middle points'),
+        related_name='route_middle_points',
+        help_text = _('All middle points of the route.'),
+        limit_choices_to={'type': ChoicesChoices.POI}
+    )
     end_point = models.ForeignKey(
         ChoiceModel, 
-        verbose_name = _('End Point'),
+        verbose_name = _('End point'),
         related_name='route_end_point',
         help_text = _('Ending point of the route.'),
         limit_choices_to={'type': ChoicesChoices.POI},
+        on_delete = models.PROTECT,
+    )
+    route_type = models.ForeignKey(
+        ChoiceModel, 
+        verbose_name = _('Route type'),
+        related_name='route_route_type',
+        help_text = _('Ending point of the route.'),
+        limit_choices_to={'type': ChoicesChoices.HIKING_DIFFICULTY},
         on_delete = models.PROTECT,
     )
 
@@ -94,9 +103,4 @@ class RouteModel(
     max_elevation = models.FloatField(
         verbose_name = _('Maximum Elevation (m)'), 
         help_text = _('Maximum elevation in meters.')
-    )
-    roads_type = models.IntegerField(
-        choices = RoadTypeChoices.choices, 
-        verbose_name = _('Roads Type'), 
-        help_text = _('Type of roads on the route.')
     )

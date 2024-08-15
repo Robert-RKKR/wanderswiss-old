@@ -8,7 +8,6 @@ from django.utils.translation import gettext_lazy as _
 from django.db import models
 
 # WanderSwiss - connection template validator import:
-from wanderswiss.base.validators.json_validators import json_list_dict_validator
 from wanderswiss.base.validators.json_validators import json_list_validator
 
 # WanderSwiss - constance import:
@@ -52,6 +51,12 @@ class GlobalSettingsModel(BaseModel):
     )
 
     # Model data time information:
+    created = models.DateTimeField(
+        verbose_name=_('Created'),
+        help_text=_('The date and time when the global settings was created. This '\
+                    'timestamp is automatically set when the object is created.'),
+        auto_now_add=True,
+    )
     updated = models.DateTimeField(
         verbose_name=_('Updated'),
         help_text=_('The date and time when these global settings were last '
@@ -60,7 +65,7 @@ class GlobalSettingsModel(BaseModel):
         auto_now=True,
     )
 
-    # Global settings:
+    # Notification logger settings:
     notification_level = models.IntegerField(
         verbose_name=_('Notification severity level'),
         help_text=_('The level of severity for actions that trigger '
@@ -119,76 +124,6 @@ class GlobalSettingsModel(BaseModel):
         blank=True,
     )
 
-    # HTTP settings:
-    http_timeout = models.IntegerField(
-        verbose_name=_('HTTP session timeout'),
-        help_text=_('The maximum amount of time (in seconds) that the Capybara '
-                    'application will wait for a response to an HTTP '
-                    'request before closing the connection. This setting '
-                    'helps to avoid indefinitely hanging requests.'),
-        default=10,
-    )
-    http_default_headers = models.JSONField(
-        verbose_name=_('HTTP default headers'),
-        help_text=_('Default headers to include in HTTP requests. This can '
-                    'include headers like "Content-Type", "Authorization", '
-                    'and other custom headers required by the API endpoints '
-                    'the application interacts with.'),
-        default=[{'Key':'Content-Type', 'Value': 'application/json'}],
-        validators=[json_list_dict_validator],
-    )
-    http_max_workers = models.IntegerField(
-        verbose_name=_('HTTP Max workers'),
-        help_text=_('Xxx.'),
-        default=10,
-    )
-
-    # SSH settings:
-    ssh_timeout = models.IntegerField(
-        verbose_name=_('SSH session timeout'),
-        help_text=_('The maximum amount of time (in seconds) that the Capybara '
-                    'application will wait for a response to an SSH request '
-                    'before closing the connection. This helps to prevent '
-                    'indefinitely hanging SSH sessions.'),
-        default=10,
-    )
-    ssh_repeat = models.IntegerField(
-        verbose_name=_('SSH repeat connection'),
-        help_text=_('The number of times the application will retry an SSH '
-                    'connection if the initial attempt fails. This setting '
-                    'can help improve reliability in unstable network '
-                    'environments.'),
-        default=2,
-    )
-    ssh_invalid_responses = models.JSONField(
-        verbose_name=_('SSH invalid responses'),
-        help_text=_('A list of strings that represent invalid responses from '
-                    'the host. These are used to identify and handle errors '
-                    'during SSH sessions. For example, certain network devices '
-                    'might return specific error messages like "invalid input '
-                    'detected" or "command not found" when a command fails.'),
-        default=[
-            '% Invalid input detected',
-            'syntax error, expecting',
-            'Error: Unrecognized command',
-            '%Error',
-            'command not found',
-            'Syntax Error: unexpected argument',
-            '% Unrecognized command found at',
-            'invalid input detected',
-            'cdp is not enabled',
-            'incomplete command',
-            'no spanning tree instance exists',
-            'lldp is not enabled',
-            'snmp agent not enabled',
-        ],
-    )
-    ssh_max_workers = models.IntegerField(
-        verbose_name=_('SSH Max workers'),
-        help_text=_('Xxx.'),
-        default=10,
-    )
-
     # Report settings:
     report_colors = models.JSONField(
         verbose_name=_('Reports colors'),
@@ -226,18 +161,12 @@ class GlobalSettingsModel(BaseModel):
     def __dict__(self):
         return {
             'is_current': self.is_current,
+            'created': self.created,
             'updated': self.updated,
             'notification_level': self.notification_level,
             'logger_level': self.logger_level,
             'logger_db': self.logger_db,
             'logger_cli': self.logger_cli,
-            'http_timeout': self.http_timeout,
-            'http_default_headers': self.http_default_headers,
-            'http_max_workers': self.http_max_workers,
-            'ssh_timeout': self.ssh_timeout,
-            'ssh_repeat': self.ssh_repeat,
-            'ssh_invalid_responses': self.ssh_invalid_responses,
-            'ssh_max_workers': self.http_max_workers,
             'report_colors': self.report_colors,
             'logger_application_option': self.logger_application_option,
             'logger_application_exclusions': self.logger_application_exclusions,
@@ -258,7 +187,7 @@ class GlobalSettingsModel(BaseModel):
             # Collect and save global settings object content:
             self.update_global_settings_dictionary()
         # Update time XXXXXXXX:
-        self._update_celery_schedule()
+        # self._update_celery_schedule()
 
     def update_global_settings_dictionary(self):
         # Collect global settings object content:

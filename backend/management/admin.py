@@ -6,6 +6,7 @@ from wanderswiss.base.admins.based_admin import BaseAdmin
 
 # WanderSwiss - management model import:
 from management.models.global_settings_model import GlobalSettingsModel
+from management.models.user_settings_model import UserSettingsModel
 from management.models.user_model import UserModel
 
 
@@ -13,15 +14,32 @@ from management.models.user_model import UserModel
 class GlobalSettingAdmin(BaseAdmin):
 
     list_display = (
-        'pk', 'is_current', 'updated',
+        'pk', 'created', 'updated', 'is_current',
     )
     search_fields = (
-        'name',
+        'pk',
     )
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_current',)
+            'fields': ('created', 'updated', 'is_current',)
+        }),
+    )
+
+
+@admin.register(UserSettingsModel)
+class UserSettingsAdmin(BaseAdmin):
+
+    list_display = (
+        'pk', 'created', 'updated',
+    )
+    search_fields = (
+        'user',
+    )
+    fieldsets = (
+        ('Basic information', {
+            'classes': ('wide', 'extrapretty',),
+            'fields': ('created', 'updated', 'measurement_system',)
         }),
     )
 

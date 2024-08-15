@@ -4,8 +4,14 @@ from django.utils.translation import gettext_lazy as _
 # Django - models import:
 from django.db import models
 
+# WanderSwiss - choices import:
+from wanderswiss.base.constants.choices import ChoicesChoices
+
 # WanderSwiss - base models import:
 from wanderswiss.base.models.base_model import BaseModel
+
+# WanderSwiss - models import:
+from infopedia.models.choice_model import ChoiceModel
 
 
 # Localization models class:
@@ -24,19 +30,36 @@ class LocalizationBaseModel(BaseModel):
         ordering = ['created']
 
     # Localization information:
-    latitude = models.FloatField(
-        verbose_name=_('Latitude'),
-        help_text=_('Latitude of the location.')
+    regions = models.ManyToManyField(
+        ChoiceModel,
+        verbose_name = _('Regions'),
+        related_name='%(class)s_regions',
+        help_text = _('Regions through which the route passes.'),
+        limit_choices_to={'type': ChoicesChoices.REGION}
     )
-    longitude = models.FloatField(
-        verbose_name=_('Longitude'),
-        help_text=_('Longitude of the location.')
+    countries = models.ManyToManyField(
+        ChoiceModel,
+        verbose_name = _('Countries'),
+        related_name='%(class)s_countries',
+        help_text = _('Countries through which the route passes.'),
+        limit_choices_to={'type': ChoicesChoices.COUNTRY}
     )
 
-    # Localization range information:
-    range = models.IntegerField(
-        verbose_name=_('Localization range'),
-        help_text=_('Xxx.'),
-        null=True,
-        blank=True
-    )
+    def __init_subclass__(cls, **kwargs):
+        # Run original __init_subclass__ method:
+        super().__init_subclass__(**kwargs)
+        # Add suffix to the relation related name:
+        cls.add_related_name_suffix()
+
+    @classmethod
+    def add_related_name_suffix(cls):
+        # Check if not _meta:
+        if not hasattr(cls, '_meta'):
+            return
+        # Iterate thru model fields:
+        for field in cls._meta.fields:
+            if isinstance(field, models.ManyToManyField):
+                if field.name == 'regions':
+                    field.rel.related_name = f'{cls.__name__.lower()}_regions'
+                elif field.name == 'countries':
+                    field.rel.related_name = f'{cls.__name__.lower()}_countries'
