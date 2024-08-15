@@ -60,39 +60,45 @@ class BaseModel(models.Model):
 
         pass
     
+    # def save(self, *args, **kwargs):
+    #     # Run dedicated operation before clean:
+    #     self.run_before_save()
+    #     # Run original save method:
+    #     super().save(*args, **kwargs)
+
+    # def clean(self):
+    #     # Run dedicated operation before clean:
+    #     self.run_before_clean()
+    #     # Run original clean method:
+    #     super().clean()
+
+    # def full_clean(self, *args, **kwargs):
+    #     # Ensure the slug is set before running full_clean
+    #     self.clean()
+    #     # Run original full_clean method:
+    #     super().full_clean(*args, **kwargs)
+
     def save(self, *args, **kwargs):
-        # Run dedicated operation before clean:
+        if not hasattr(self, '_dedicated_operation_ran') or not self._dedicated_operation_ran:
+            self.dedicated_operation()
+            self._dedicated_operation_ran = True
+        # Run before save method:
         self.run_before_save()
         # Run original save method:
         super().save(*args, **kwargs)
+        # Reset the flag after save:
+        self._dedicated_operation_ran = False
 
     def clean(self):
-        # Run dedicated operation before clean:
+        if not hasattr(self, '_dedicated_operation_ran') or not self._dedicated_operation_ran:
+            self.dedicated_operation()
+            self._dedicated_operation_ran = True
+        # Run before clean method:
         self.run_before_clean()
         # Run original clean method:
         super().clean()
-
-    def full_clean(self, *args, **kwargs):
-        # Ensure the slug is set before running full_clean
-        self.clean()
-        # Run original full_clean method:
-        super().full_clean(*args, **kwargs)
-
-    def save(self, *args, **kwargs):
-        if not hasattr(self, '_dedicated_operation_ran') or not self._dedicated_operation_ran:
-            self.dedicated_operation()
-            self._dedicated_operation_ran = True
-        self.run_before_save()
-        super().save(*args, **kwargs)
-        self._dedicated_operation_ran = False  # Reset the flag after save
-
-    def clean(self):
-        if not hasattr(self, '_dedicated_operation_ran') or not self._dedicated_operation_ran:
-            self.dedicated_operation()
-            self._dedicated_operation_ran = True
-        self.run_before_clean()
-        super().clean()
-        self._dedicated_operation_ran = False  # Reset the flag after clean
+        # Reset the flag after clean:
+        self._dedicated_operation_ran = False
 
     def full_clean(self, *args, **kwargs):
         if not hasattr(self, '_dedicated_operation_ran') or not self._dedicated_operation_ran:
@@ -101,7 +107,8 @@ class BaseModel(models.Model):
         self.clean()
         # Run original full_clean method:
         super().full_clean(*args, **kwargs)
-        self._dedicated_operation_ran = False  # Reset the flag after full_clean
+        # Reset the flag after full_clean:
+        self._dedicated_operation_ran = False
 
     def as_dictionary(self):
         """
