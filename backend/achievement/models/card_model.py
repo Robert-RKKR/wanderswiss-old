@@ -74,10 +74,6 @@ class CardModel(
         verbose_name = _('Altitude'),
         help_text = _('Xxx.')
     )
-    # photo = models.TextField(
-    #     verbose_name = _('Xxx'),
-    #     help_text = _('Xxx.')
-    # )
     
     def dedicated_operation(self):
         # Call the original dedicated_operation method:

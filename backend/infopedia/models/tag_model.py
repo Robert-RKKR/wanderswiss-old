@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 # WanderSwiss - base models import:
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
+from wanderswiss.base.models.language_model import LanguageBaseModel
 from wanderswiss.base.models.status_model import StatusBasedModel
 
 # WanderSwiss - constance import:
@@ -15,7 +16,8 @@ from wanderswiss.base.constants.color import ColorChoices
 # WanderSwiss dedicated model:
 class TagModel(
     StatusBasedModel,
-    IdentificationBaseModel):
+    IdentificationBaseModel,
+    LanguageBaseModel):
 
     class Meta:
         

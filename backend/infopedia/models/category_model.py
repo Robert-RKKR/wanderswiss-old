@@ -6,13 +6,15 @@ from django.db import models
 
 # WanderSwiss - base model import:
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
+from wanderswiss.base.models.language_model import LanguageBaseModel
 from wanderswiss.base.models.status_model import StatusBasedModel
 
 
 # WanderSwiss dedicated model:
 class CategoryModel(
     StatusBasedModel,
-    IdentificationBaseModel):
+    IdentificationBaseModel,
+    LanguageBaseModel):
 
     class Meta:
         

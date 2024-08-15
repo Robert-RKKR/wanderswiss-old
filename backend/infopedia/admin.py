@@ -58,7 +58,7 @@ class ArticleAdmin(BaseAdmin):
         ('Base', {
             'classes': ('wide', 'extrapretty',),
             'fields': ('is_active', 'created', 'updated', 'name', 'description',
-                       'category', 'status', 'published',)
+                        'category', 'status', 'published',)
         }),
         ('Access', {
             'classes': ('wide', 'extrapretty',),
@@ -98,7 +98,7 @@ class ChoiceAdmin(BaseAdmin):
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
             'fields': ('is_active', 'created', 'updated', 'name', 'description',
-                       'type',)
+                        'type', 'language')
         }),
     )
     readonly_fields = (
