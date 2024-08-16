@@ -101,19 +101,19 @@ class UserModel(BaseModel, AbstractBaseUser, PermissionsMixin):
         verbose_name=_('Username'),
         help_text=_('The unique name of the administrator used for login '
                     'and identification.'),
-        max_length=64,
+        max_length=128,
         unique=True,
     )
     name = models.CharField(
         verbose_name=_('First name'),
-        help_text=_('Xxx.'),
-        max_length=64,
+        help_text=_('User first name.'),
+        max_length=128,
         unique=True,
     )
     surname = models.CharField(
         verbose_name=_('Surname'),
-        help_text=_('Xxx.'),
-        max_length=64,
+        help_text=_('User family name.'),
+        max_length=128,
         unique=True,
     )
     email = models.EmailField(

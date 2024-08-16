@@ -10,7 +10,6 @@ from wanderswiss.base.models.status_model import StatusBasedModel
 
 # WanderSwiss - choices import:
 from wanderswiss.base.constants.article import StatusChoices
-from wanderswiss.base.constants.language import LanguageChoices
 
 # WanderSwiss - models import:
 from infopedia.models.category_model import CategoryModel
