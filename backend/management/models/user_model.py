@@ -104,15 +104,15 @@ class UserModel(BaseModel, AbstractBaseUser, PermissionsMixin):
         max_length=128,
         unique=True,
     )
-    name = models.CharField(
+    first_name = models.CharField(
         verbose_name=_('First name'),
         help_text=_('User first name.'),
         max_length=128,
         unique=True,
     )
-    surname = models.CharField(
-        verbose_name=_('Surname'),
-        help_text=_('User family name.'),
+    last_name = models.CharField(
+        verbose_name=_('Last name'),
+        help_text=_('User last name.'),
         max_length=128,
         unique=True,
     )

@@ -4,9 +4,6 @@ from django.utils.translation import gettext_lazy as _
 # Django - models import:
 from django.db import models
 
-# WanderSwiss - base manager import:
-from wanderswiss.base.managers.base_manager import BaseManager
-
 # WanderSwiss - base models import:
 from wanderswiss.base.models.base_model import BaseModel
 
@@ -25,9 +22,6 @@ class StatusBasedModel(BaseModel):
 
         # Default ordering:
         ordering = ['created']
-
-    # Model objects manager:
-    objects = BaseManager()
 
     # Model status values:
     is_deleted = models.BooleanField(

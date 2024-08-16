@@ -1,4 +1,6 @@
 # Django - admin import:
+from django.contrib.auth.forms import AdminPasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import admin
 
 # WanderSwiss - base admin models import:
@@ -48,19 +50,20 @@ class UserSettingsAdmin(BaseAdmin):
 class UserAdmin(BaseAdmin):
 
     list_display = (
-        'pk', 'username', 'name', 'surname', 'is_active', 'is_staff', 'email', 'created', 'updated'
+        'pk', 'username', 'first_name', 'last_name', 'is_active',
+        'is_staff', 'email', 'created', 'updated'
     )
     list_filter = (
         'is_active',
     )
     search_fields = (
-        'username', 'description', 'name', 'surname',
+        'username', 'description', 'username', 'first_name', 'last_name',
     )
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'is_staff', 'created',
-                'updated', 'username', 'name', 'surname', 'email')
+            'fields': ('is_active', 'is_staff', 'is_superuser', 'created',
+                'updated', 'username', 'first_name', 'last_name', 'email')
         }),
         ('Password', {
             'classes': ('wide', 'extrapretty',),
@@ -68,10 +71,40 @@ class UserAdmin(BaseAdmin):
         }),
         ('Permissions', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('user_permissions', 'groups')
+            'fields': ('role', 'user_permissions', 'groups')
         }),
     )
     readonly_fields = (
         'created', 'updated'
     )
     empty_value_display = '--None--'
+    change_password_form = AdminPasswordChangeForm
+
+    def get_form(self, request, obj=None, **kwargs):
+        """
+        Use the default form for editing objects, but use a
+        special form for changing passwords.
+        """
+        
+        if obj and 'password' in self.fieldsets:
+            kwargs['form'] = self.change_password_form
+        return super().get_form(request, obj, **kwargs)
+
+    def save_model(self, request, obj, form, change):
+        """
+        Overriding save_model to handle password changes.
+        """
+
+        if form.cleaned_data.get('password'):
+            obj.set_password(form.cleaned_data['password'])
+        super().save_model(request, obj, form, change)
+
+    def get_fieldsets(self, request, obj=None):
+        """
+        Show password fields only when editing an existing user.
+        """
+
+        fieldsets = super().get_fieldsets(request, obj)
+        if not obj:
+            return tuple(fs for fs in fieldsets if 'Password' not in fs[0])
+        return fieldsets

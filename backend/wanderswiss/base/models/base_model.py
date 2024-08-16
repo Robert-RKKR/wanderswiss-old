@@ -4,6 +4,9 @@ import uuid
 # Django - models import:
 from django.db import models
 
+# WanderSwiss - base manager import:
+from wanderswiss.base.managers.base_manager import BaseManager
+
 
 # Base models class:
 class BaseModel(models.Model):
@@ -16,6 +19,9 @@ class BaseModel(models.Model):
 
         # Abstract class value:
         abstract = True
+
+    # Model objects manager:
+    objects = BaseManager()
 
     # Define main show variable:
     dashboard_model_data = {}
