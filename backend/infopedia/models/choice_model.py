@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 # WanderSwiss - base models import:
+from wanderswiss.base.models.gps_localization_model import GpsLocalizationBaseModel
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
 from wanderswiss.base.models.status_model import StatusBasedModel
 
@@ -15,7 +16,8 @@ from wanderswiss.base.constants.choices import ChoicesChoices
 # WanderSwiss dedicated model:
 class ChoiceModel(
     StatusBasedModel,
-    IdentificationBaseModel):
+    IdentificationBaseModel,
+    GpsLocalizationBaseModel):
 
     class Meta:
         
@@ -36,4 +38,8 @@ class ChoiceModel(
         verbose_name = _('Choice type'),
         help_text = _('Xxx.'),
         default=ChoicesChoices.POI
+    )
+    content = models.TextField(
+        verbose_name = _('Content'),
+        help_text = _('Xxx.'),
     )

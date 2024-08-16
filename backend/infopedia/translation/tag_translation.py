@@ -3,13 +3,13 @@ from modeltranslation.translator import TranslationOptions
 from modeltranslation.translator import translator
 
 # WanderSwiss - model import:
-from infopedia.models.article_model import ArticleModel
+from infopedia.models.tag_model import TagModel
 
 
 # Translation class:
-class ArticleTranslation(TranslationOptions):
-    fields = ('name', 'content', 'description',)
+class TagTranslation(TranslationOptions):
+    fields = ('name', 'description',)
 
 
 # Register translation:
-translator.register(ArticleModel, ArticleTranslation)
+translator.register(TagModel, TagTranslation)

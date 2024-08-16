@@ -11,7 +11,7 @@ from wanderswiss.base.models.user_model import UserBaseModel
 
 
 # WanderSwiss dedicated model:
-class ProfileModel(
+class StatisticModel(
     StatusBasedModel,
     IdentificationBaseModel,
     UserBaseModel):
@@ -19,8 +19,8 @@ class ProfileModel(
     class Meta:
         
         # Model name values:
-        verbose_name = 'Profile'
-        verbose_name_plural = 'Profiles'
+        verbose_name = 'Statistic'
+        verbose_name_plural = 'Statistics'
 
         # Default ordering:
         ordering = ['-created']

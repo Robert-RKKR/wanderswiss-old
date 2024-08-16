@@ -70,22 +70,9 @@ class ArticleModel(
     )
 
     # Content related values:
-    introtext = models.TextField(
-        verbose_name = _('Intro'),
-        help_text = _('Xxx.'),
-        null = True,
-        blank = True,
-    )
     content = models.TextField(
         verbose_name = _('Content'),
         help_text = _('Xxx.'),
-    )
-    language = models.CharField(
-        max_length=2,
-        verbose_name = _('Language'),
-        help_text = _('Xxx.'),
-        choices=LanguageChoices,
-        default=LanguageChoices.EN
     )
     metadata = models.JSONField(
         default = dict, 
@@ -108,8 +95,7 @@ class ArticleModel(
         self.collect_introtext()
 
     def collect_introtext(self):
-        # Check if introtext has been provided:
-        print(f'self.introtext: {self.introtext}')
-        if not self.introtext:
-            # Create introtext based on content:
-            self.introtext = self.content[:123]
+        # Check if description has been provided:
+        if not self.description:
+            # Create description based on content:
+            self.description = self.content[:123]

@@ -3,6 +3,7 @@ import json
 import csv
 
 # Django - import:
+from modeltranslation.admin import TranslationAdmin
 from django.core.serializers import serialize
 from django.http import HttpResponse
 from django.contrib import messages
@@ -37,7 +38,7 @@ def collect_keys(queryset):
             return return_key
 
 
-# Base admin class:
+# Base admin classes:
 class BaseAdmin(admin.ModelAdmin):
 
     actions = [
@@ -69,3 +70,8 @@ class BaseAdmin(admin.ModelAdmin):
     def make_active(self, request, queryset):
         change = queryset.update(is_active=True)
         self.message_user(request, '%d device was successfully marked as active.')
+
+
+class BaseTranslationAdmin(TranslationAdmin, BaseAdmin):
+
+    pass
