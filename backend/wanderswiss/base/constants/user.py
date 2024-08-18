@@ -15,4 +15,4 @@ class UserRoleChoices(BaseIntegerChoices):
     # RW access to their content across all apps:
     AUTHOR = 2, _('Author')
     # RW access only to Hiking app content they created:
-    USER = 3, _('User')
+    GUEST = 3, _('Guest')

@@ -93,7 +93,7 @@ class UserModel(BaseModel, AbstractBaseUser, PermissionsMixin):
         choices = UserRoleChoices.choices,
         verbose_name = _('Role'),
         help_text = _('User role.'),
-        default=UserRoleChoices.USER
+        default=UserRoleChoices.GUEST
     )
 
     # Main administrator information:
