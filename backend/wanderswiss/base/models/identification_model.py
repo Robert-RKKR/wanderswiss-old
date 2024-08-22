@@ -1,6 +1,5 @@
 # python - import:
 import time
-import re
 
 # Django - translation model import:
 from django.utils.translation import gettext_lazy as _
@@ -17,6 +16,9 @@ from wanderswiss.base.validators.base_validator import NameValueValidator
 
 # WanderSwiss - base models import:
 from wanderswiss.base.models.base_model import BaseModel
+
+# WanderSwiss - choice import:
+from wanderswiss.base.constants.icon import IconChoices
 
 
 # Identification models class:
@@ -72,11 +74,13 @@ class IdentificationBaseModel(BaseModel):
         null=True,
         blank=True,
     )
-    ico = models.IntegerField(
+    ico = models.CharField(
+        choices=IconChoices.choices,
         verbose_name=_('Object ico'),
         help_text=_('Graphical representation of the object. Default value '\
-                    'is 1.'),
-        default=1,
+                    'is Administrator icon.'),
+        default=IconChoices.ADMINISTRATOR,
+        max_length=64,
     )
     is_dynamic = models.BooleanField(
         verbose_name=_('Is dynamic'),
@@ -87,27 +91,47 @@ class IdentificationBaseModel(BaseModel):
     )
 
     def __init__(self, *args, **kwargs):
-
-        # Helper function to convert camel case to space-separated words:
-        def camel_case_to_spaces(name):
-            return re.sub(r'(?<!^)(?=[A-Z])', ' ', name).replace('_', ' ')
-
+        """
+        Base init method.
+        """
+        
         super().__init__(*args, **kwargs)
         if not self.description:
-            self.description = f'{camel_case_to_spaces(self.__class__.__name__)} '\
-            'default description.'
+            self.description = f'{self.model_representation()} '\
+                'default description.'
 
     # object representation:
     def __repr__(self) -> str:
-        return str(self.name)
+        """
+        WanderSwiss model representation:
+        """
+
+        # Collect model representation name:
+        model_rep = self.model_representation()
+        # Return object representation:
+        return f'<WanderSwiss {model_rep} object: {self.name}>'
 
     def __str__(self) -> str:
-        return  str(self.name)
+        """
+        WanderSwiss model representation:
+        """
 
-    # Natural key representation:
-    def natural_key(self):
-        return str(self.name)
+        # Collect model representation name:
+        model_rep = self.model_representation()
+        # Return object representation:
+        return f'<WanderSwiss {model_rep} object: {self.name}>'
+
+    def natural_key(self) -> str:
+        """
+        WanderSwiss model representation:
+        """
+
+        # Collect model representation name:
+        model_rep = self.model_representation()
+        # Return object representation:
+        return f'<WanderSwiss {model_rep} object: {self.name}>'
     
+    # Additional model methods:
     def dedicated_operation(self):
         # Call the original dedicated_operation method:
         super().dedicated_operation()

@@ -6,9 +6,8 @@ from wanderswiss.base.constants.base.base_choices import BaseStringChoices
 
 
 # Choices class:
-class LanguageChoices(BaseStringChoices):
+class IconChoices(BaseStringChoices):
 
     # Choices values:
-    DE = 'de', _('German')
-    EN = 'en', _('English')
-    GE = 'pl', _('Polish')
+    ADMINISTRATOR = 'fa-regular fa-user', _('Administrator')
+    CIRCLE = 'bi bi-1-circle', _('Circle')
