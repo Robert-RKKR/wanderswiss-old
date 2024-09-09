@@ -7,6 +7,7 @@ from django.db import models
 # WanderSwiss - base model import:
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
 from wanderswiss.base.models.status_model import StatusBasedModel
+from wanderswiss.base.models.base_m2m_model import BaseM2mModel
 
 # WanderSwiss - models import:
 from hiking.models.route_model import RouteModel
@@ -42,7 +43,7 @@ class TrialModel(
     )
 
 
-class TrialRouteModel(models.Model):
+class TrialRouteModel(BaseM2mModel):
 
     # Relation with other models:
     trial = models.ForeignKey(
