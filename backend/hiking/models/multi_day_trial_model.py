@@ -7,6 +7,7 @@ from django.db import models
 # WanderSwiss - base model import:
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
 from wanderswiss.base.models.status_model import StatusBasedModel
+from wanderswiss.base.models.base_m2m_model import BaseM2mModel
 
 # WanderSwiss - models import:
 from hiking.models.trial_model import TrialModel
@@ -48,7 +49,7 @@ class MultiDayTrialModel(
     )
 
 
-class MultiDayTrialTrialModel(models.Model):
+class MultiDayTrialTrialModel(BaseM2mModel):
 
     # Relation with other models:
     trial = models.ForeignKey(
@@ -64,11 +65,8 @@ class MultiDayTrialTrialModel(models.Model):
         help_text = _('Multi day trial that includes this trial.')
     )
 
-    # Model based values:
+    # Additional M2M values:
     order = models.IntegerField(
         verbose_name = _('Order'), 
         help_text = _('Order of the trial within the multi day trial.')
     )
-
-    def __str__(self):
-        return f'{self.multi_day_trial.name} includes {self.trial.name} in order {self.order}'

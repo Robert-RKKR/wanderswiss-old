@@ -21,7 +21,7 @@ class GpsLocalizationBaseModel(BaseModel):
         abstract = True
 
         # Default ordering:
-        ordering = ['created']
+        ordering = ['id']
 
     # Localization information:
     latitude = models.FloatField(

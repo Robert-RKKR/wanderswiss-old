@@ -8,6 +8,13 @@ from django.db import models
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
 from wanderswiss.base.models.localization_model import LocalizationBaseModel
 from wanderswiss.base.models.status_model import StatusBasedModel
+from wanderswiss.base.models.base_m2m_model import BaseM2mModel
+
+# WanderSwiss - user model import:
+from management.models.user_model import UserModel
+
+# WanderSwiss - hiking model import:
+from hiking.models.route_model import RouteModel
 
 
 # WanderSwiss dedicated model:
@@ -33,9 +40,50 @@ class EventModel(
             ('read_only', 'Read only access')
         )
 
-    #
+    # Relation with other models:
+    users = models.ManyToManyField(
+        UserModel, 
+        through='UserEventModel',
+        verbose_name=_('Event Participants'), 
+        help_text=_('Users who are participating in this event, '
+                    'through multi-day trials or individual trials '
+                    'linked to this event.')
+    )
+    route = models.ForeignKey(
+        RouteModel,
+        on_delete=models.PROTECT,
+        verbose_name=_('Hiking Route'),
+        help_text=_('The route that will be taken during this event.'),
+        null=True,
+        blank=True
+    )
+
+
+class UserEventModel(BaseM2mModel):
+
+    # Relation with other models:
+    event = models.ForeignKey(
+        EventModel, 
+        on_delete=models.CASCADE, 
+        verbose_name=_('Related Event'),
+        help_text=_('The specific event this user is participating in. If'
+                    'the event is deleted, this record will also be removed.')
+    )
+    user = models.ForeignKey(
+        UserModel, 
+        on_delete=models.CASCADE, 
+        verbose_name=_('Event Participant'),
+        help_text=_('The participant (user) associated with this event. If '
+                    'the user is deleted, this record will also be removed.')
+    )
+
+    # Additional M2M values:
     participant_id = models.CharField(
-        verbose_name = _('Participant identification number'),
-        help_text = _('Xxx.'),
+        verbose_name=_('Event Participant Identification Number'),
+        help_text=_('Unique ID assigned to the participant by the event '
+                    'organizer. This ID is specific to the walk event, '
+                    'used for tracking, communication, and identification. '
+                    'It ensures proper registration and identification of each '
+                    'participant throughout the event.'),
         max_length=64
     )
