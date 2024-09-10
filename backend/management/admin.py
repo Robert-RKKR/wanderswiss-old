@@ -11,6 +11,9 @@ from management.models.global_settings_model import GlobalSettingsModel
 from management.models.user_settings_model import UserSettingsModel
 from management.models.user_model import UserModel
 
+# Capybara - hiking model import:
+from hiking.models.event_model import UserEventModel
+
 
 @admin.register(GlobalSettingsModel)
 class GlobalSettingAdmin(BaseAdmin):
@@ -46,6 +49,12 @@ class UserSettingsAdmin(BaseAdmin):
     )
 
 
+class UserEventInline(admin.TabularInline):
+    model = UserEventModel
+    extra = 1
+    autocomplete_fields = ['user']
+
+
 @admin.register(UserModel)
 class UserAdmin(BaseAdmin):
 
@@ -78,6 +87,7 @@ class UserAdmin(BaseAdmin):
         'created', 'updated'
     )
     empty_value_display = '--None--'
+    inlines = [UserEventInline]
     change_password_form = AdminPasswordChangeForm
 
     def get_form(self, request, obj=None, **kwargs):

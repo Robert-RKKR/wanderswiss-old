@@ -59,7 +59,7 @@ class BaseModel(models.Model):
         # Collect model representation name:
         model_rep = self.model_representation()
         # Return object representation:
-        return f'<WanderSwiss {model_rep} object: {self.pk}>'
+        return f'<WanderSwiss {model_rep}, object: {self.pk}>'
 
     def __str__(self) -> str:
         """
@@ -69,7 +69,7 @@ class BaseModel(models.Model):
         # Collect model representation name:
         model_rep = self.model_representation()
         # Return object representation:
-        return f'<WanderSwiss {model_rep} object: {self.pk}>'
+        return f'<WanderSwiss {model_rep}, object: {self.pk}>'
 
     def natural_key(self) -> str:
         """
@@ -79,7 +79,7 @@ class BaseModel(models.Model):
         # Collect model representation name:
         model_rep = self.model_representation()
         # Return object representation:
-        return f'<WanderSwiss {model_rep} object: {self.pk}>'
+        return f'<WanderSwiss {model_rep}, object: {self.pk}>'
 
     # Enriched original Django methods:
     def save(self, *args, **kwargs):
@@ -139,7 +139,7 @@ class BaseModel(models.Model):
             field.name: getattr(self, field.name) for field in self._meta.fields}
     
     # Additional model methods:
-    def camel_case_to_spaces(name):
+    def camel_case_to_spaces(self, name):
         """
         Convert camel case to space-separated words.
         """

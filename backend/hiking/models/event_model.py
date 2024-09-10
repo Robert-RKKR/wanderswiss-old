@@ -8,7 +8,7 @@ from django.db import models
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
 from wanderswiss.base.models.localization_model import LocalizationBaseModel
 from wanderswiss.base.models.status_model import StatusBasedModel
-from wanderswiss.base.models.base_m2m_model import BaseM2mModel
+from wanderswiss.base.models.user_m2m_model import UserM2mModel
 
 # WanderSwiss - user model import:
 from management.models.user_model import UserModel
@@ -59,7 +59,14 @@ class EventModel(
     )
 
 
-class UserEventModel(BaseM2mModel):
+class UserEventModel(UserM2mModel):
+
+
+    class Meta:
+        
+        # Model name values:
+        verbose_name = 'User Event relation'
+        verbose_name_plural = 'User Event relations'
 
     # Relation with other models:
     event = models.ForeignKey(
@@ -68,13 +75,6 @@ class UserEventModel(BaseM2mModel):
         verbose_name=_('Related Event'),
         help_text=_('The specific event this user is participating in. If'
                     'the event is deleted, this record will also be removed.')
-    )
-    user = models.ForeignKey(
-        UserModel, 
-        on_delete=models.CASCADE, 
-        verbose_name=_('Event Participant'),
-        help_text=_('The participant (user) associated with this event. If '
-                    'the user is deleted, this record will also be removed.')
     )
 
     # Additional M2M values:
