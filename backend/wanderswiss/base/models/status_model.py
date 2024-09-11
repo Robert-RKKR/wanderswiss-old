@@ -7,6 +7,9 @@ from django.db import models
 # WanderSwiss - base models import:
 from wanderswiss.base.models.base_model import BaseModel
 
+# WanderSwiss - management model import:
+from management.models.user_model import UserModel
+
 
 # Status models class:
 class StatusBasedModel(BaseModel):
@@ -23,22 +26,33 @@ class StatusBasedModel(BaseModel):
         # Default ordering:
         ordering = ['created']
 
+    # Model creator relation:
+    creator = models.ForeignKey(
+        UserModel,
+        verbose_name=_('Creator'),
+        help_text=_('Creator responsible for the provided object. This field '
+                    'links to the user who created or is managing this object.'),
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
+
     # Model status values:
     is_deleted = models.BooleanField(
         verbose_name=_('Deleted'),
-        help_text=_('Indicates if the object is marked as deleted. Deleted '\
+        help_text=_('Indicates if the object is marked as deleted. Deleted '
                     'objects are not removed from the database.'),
         default=False,
     )
     is_root = models.BooleanField(
         verbose_name=_('Root'),
-        help_text=_('Indicates if the object is a root object. Root objects '\
+        help_text=_('Indicates if the object is a root object. Root objects '
                     'cannot be deleted or modified.'),
         default=False,
     )
     is_active = models.BooleanField(
         verbose_name=_('Active'),
-        help_text=_('Indicates if the object is active. Inactive objects have '\
+        help_text=_('Indicates if the object is active. Inactive objects have '
                     'limited functionality and may not appear in queries.'),
         default=True,
     )
@@ -46,14 +60,14 @@ class StatusBasedModel(BaseModel):
     # Model data time information:
     created = models.DateTimeField(
         verbose_name=_('Created'),
-        help_text=_('The date and time when the object was created. This '\
+        help_text=_('The date and time when the object was created. This '
                     'timestamp is automatically set when the object is created.'),
         auto_now_add=True,
     )
     updated = models.DateTimeField(
         verbose_name=_('Updated'),
-        help_text=_('The date and time when the object was last updated. '\
-                    'This timestamp is automatically updated whenever the '\
+        help_text=_('The date and time when the object was last updated. '
+                    'This timestamp is automatically updated whenever the '
                     'object is modified.'),
         auto_now=True,
     )

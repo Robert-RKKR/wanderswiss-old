@@ -22,7 +22,7 @@ from infopedia.translation.tag_translation import TagTranslation
 class CategoryAdmin(BaseTranslationAdmin):
 
     list_display = (
-        'name', 'is_active', 'created', 'updated',
+        'name', 'is_active', 'creator', 'created', 'updated',
     )
     list_display_links = (
         'name',
@@ -36,11 +36,11 @@ class CategoryAdmin(BaseTranslationAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'created', 'updated', 'name', 'description',)
+            'fields': ('is_active', 'creator', 'created', 'updated', 'name', 'description',)
         }),
     )
     readonly_fields = (
-        'created', 'updated',
+        'creator', 'created', 'updated',
     )
     empty_value_display = '--None--'
 
@@ -49,7 +49,7 @@ class CategoryAdmin(BaseTranslationAdmin):
 class ArticleAdmin(BaseTranslationAdmin):
 
     list_display = (
-        'name', 'is_active', 'created', 'updated',
+        'name', 'is_active', 'creator', 'created', 'updated',
     )
     list_display_links = (
         'name',
@@ -63,7 +63,7 @@ class ArticleAdmin(BaseTranslationAdmin):
     fieldsets = (
         ('Base', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'created', 'updated', 'name', 'description',
+            'fields': ('is_active', 'creator', 'created', 'updated', 'name', 'description',
                         'category', 'status', 'published',)
         }),
         ('Access', {
@@ -80,7 +80,7 @@ class ArticleAdmin(BaseTranslationAdmin):
         }),
     )
     readonly_fields = (
-        'created', 'updated',
+        'creator', 'created', 'updated',
     )
     empty_value_display = '--None--'
 
@@ -89,7 +89,7 @@ class ArticleAdmin(BaseTranslationAdmin):
 class ChoiceAdmin(BaseTranslationAdmin):
 
     list_display = (
-        'name', 'is_active', 'created', 'updated',
+        'name', 'is_active', 'creator', 'created', 'updated',
     )
     list_display_links = (
         'name',
@@ -103,7 +103,7 @@ class ChoiceAdmin(BaseTranslationAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'created', 'updated', 'name', 'description',
+            'fields': ('is_active', 'creator', 'created', 'updated', 'name', 'description',
                         'type',)
         }),
         ('Content', {
@@ -116,7 +116,7 @@ class ChoiceAdmin(BaseTranslationAdmin):
         })
     )
     readonly_fields = (
-        'created', 'updated',
+        'creator', 'created', 'updated',
     )
     empty_value_display = '--None--'
 
@@ -125,7 +125,7 @@ class ChoiceAdmin(BaseTranslationAdmin):
 class TagAdmin(BaseTranslationAdmin):
 
     list_display = (
-        'name', 'is_active', 'created', 'updated',
+        'name', 'is_active', 'creator', 'created', 'updated',
     )
     list_display_links = (
         'name',
@@ -139,10 +139,10 @@ class TagAdmin(BaseTranslationAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'created', 'updated', 'name', 'description',)
+            'fields': ('is_active', 'creator', 'created', 'updated', 'name', 'description',)
         }),
     )
     readonly_fields = (
-        'created', 'updated',
+        'creator', 'created', 'updated',
     )
     empty_value_display = '--None--'

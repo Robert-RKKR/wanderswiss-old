@@ -15,7 +15,7 @@ from achievement.models.card_model import CardModel
 class AchievementAdmin(BaseAdmin):
 
     list_display = (
-        'name', 'is_active', 'created', 'updated',
+        'name', 'is_active', 'creator', 'creator', 'created', 'updated',
     )
     list_display_links = (
         'name',
@@ -29,7 +29,7 @@ class AchievementAdmin(BaseAdmin):
     fieldsets = (
         ('Basic', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'created', 'updated', 'name', 'description',)
+            'fields': ('is_active', 'creator', 'created', 'updated', 'name', 'description',)
         }),
         ('Achievement', {
             'classes': ('wide', 'extrapretty',),
@@ -37,7 +37,7 @@ class AchievementAdmin(BaseAdmin):
         }),
     )
     readonly_fields = (
-        'created', 'updated',
+        'creator', 'created', 'updated',
     )
     empty_value_display = '--None--'
 
@@ -46,7 +46,7 @@ class AchievementAdmin(BaseAdmin):
 class StatisticAdmin(BaseAdmin):
 
     list_display = (
-        'name', 'is_active', 'created', 'updated',
+        'name', 'is_active', 'creator', 'created', 'updated',
     )
     list_display_links = (
         'name',
@@ -60,11 +60,11 @@ class StatisticAdmin(BaseAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'created', 'updated', 'name', 'description',)
+            'fields': ('is_active', 'creator', 'created', 'updated', 'name', 'description',)
         }),
     )
     readonly_fields = (
-        'created', 'updated',
+        'creator', 'created', 'updated',
     )
     empty_value_display = '--None--'
 
@@ -73,7 +73,7 @@ class StatisticAdmin(BaseAdmin):
 class CardAdmin(BaseAdmin):
 
     list_display = (
-        'name', 'is_active', 'created', 'updated',
+        'name', 'is_active', 'creator', 'created', 'updated',
     )
     list_display_links = (
         'name',
@@ -87,10 +87,10 @@ class CardAdmin(BaseAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'created', 'updated', 'name', 'description',)
+            'fields': ('is_active', 'creator', 'created', 'updated', 'name', 'description',)
         }),
     )
     readonly_fields = (
-        'created', 'updated',
+        'creator', 'created', 'updated',
     )
     empty_value_display = '--None--'

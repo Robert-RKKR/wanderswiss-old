@@ -18,7 +18,7 @@ from hiking.models.event_model import EventModel
 class MultiDayTrialAdmin(BaseAdmin):
 
     list_display = (
-        'name', 'is_active', 'created', 'updated',
+        'name', 'is_active', 'creator', 'created', 'updated',
     )
     list_display_links = (
         'name',
@@ -32,11 +32,11 @@ class MultiDayTrialAdmin(BaseAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'created', 'updated', 'name', 'description',)
+            'fields': ('is_active', 'creator', 'created', 'updated', 'name', 'description',)
         }),
     )
     readonly_fields = (
-        'created', 'updated',
+        'creator', 'created', 'updated',
     )
     empty_value_display = '--None--'
 
@@ -45,7 +45,7 @@ class MultiDayTrialAdmin(BaseAdmin):
 class RouteAdmin(BaseAdmin):
 
     list_display = (
-        'name', 'is_active', 'created', 'updated',
+        'name', 'is_active', 'creator', 'created', 'updated',
     )
     list_display_links = (
         'name',
@@ -59,7 +59,7 @@ class RouteAdmin(BaseAdmin):
     fieldsets = (
         ('Base', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'created', 'updated',
+            'fields': ('is_active', 'creator', 'created', 'updated',
                         'name', 'description',)
         }),
         ('Localization', {
@@ -74,7 +74,7 @@ class RouteAdmin(BaseAdmin):
         }),
     )
     readonly_fields = (
-        'created', 'updated',
+        'creator', 'created', 'updated',
     )
     empty_value_display = '--None--'
 
@@ -83,7 +83,7 @@ class RouteAdmin(BaseAdmin):
 class TrialAdmin(BaseAdmin):
 
     list_display = (
-        'name', 'is_active', 'created', 'updated',
+        'name', 'is_active', 'creator', 'created', 'updated',
     )
     list_display_links = (
         'name',
@@ -97,11 +97,11 @@ class TrialAdmin(BaseAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'created', 'updated', 'name', 'description',)
+            'fields': ('is_active', 'creator', 'created', 'updated', 'name', 'description',)
         }),
     )
     readonly_fields = (
-        'created', 'updated',
+        'creator', 'created', 'updated',
     )
     empty_value_display = '--None--'
 
@@ -116,7 +116,7 @@ class UserEventInline(admin.TabularInline):
 class EventAdmin(BaseAdmin):
 
     list_display = (
-        'name', 'is_active', 'created', 'updated',
+        'name', 'is_active', 'creator', 'created', 'updated',
     )
     list_display_links = (
         'name',
@@ -130,7 +130,7 @@ class EventAdmin(BaseAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'created', 'updated', 'name', 'description',)
+            'fields': ('is_active', 'creator', 'created', 'updated', 'name', 'description',)
         }),
         ('Relations', {
             'classes': ('wide', 'extrapretty',),
@@ -138,7 +138,7 @@ class EventAdmin(BaseAdmin):
         }),
     )
     readonly_fields = (
-        'created', 'updated',
+        'creator', 'created', 'updated',
     )
     autocomplete_fields = ('route',)
     inlines = [UserEventInline]

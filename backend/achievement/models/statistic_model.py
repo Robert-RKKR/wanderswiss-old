@@ -7,14 +7,12 @@ from django.db import models
 # WanderSwiss - base model import:
 from wanderswiss.base.models.identification_model import IdentificationBaseModel
 from wanderswiss.base.models.status_model import StatusBasedModel
-from wanderswiss.base.models.user_model import UserBaseModel
 
 
 # WanderSwiss dedicated model:
 class StatisticModel(
     StatusBasedModel,
-    IdentificationBaseModel,
-    UserBaseModel):
+    IdentificationBaseModel):
 
     class Meta:
         
