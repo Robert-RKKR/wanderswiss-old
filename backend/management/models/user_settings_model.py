@@ -21,7 +21,7 @@ user_settings = {}
 
 
 # User setting model class:
-class UserSettingsModel(BaseModel):
+class UserSettingsModel(UserModel):
 
     class Meta:
         
@@ -35,16 +35,6 @@ class UserSettingsModel(BaseModel):
             ('read_write', 'Read and write access.'),
             ('read_only', 'Read only access')
         )
-
-    
-    # Relation with other models:
-    user = models.ForeignKey(
-        UserModel, 
-        on_delete = models.SET_NULL, 
-        null = True, 
-        blank = True, 
-        verbose_name = _('Author')
-    )
 
     # Model data time information:
     created = models.DateTimeField(

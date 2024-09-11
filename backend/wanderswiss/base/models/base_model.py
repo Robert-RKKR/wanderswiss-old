@@ -32,7 +32,7 @@ class BaseModel(models.Model):
         primary_key=True,
         default=uuid.uuid4,
         editable=False,
-        help_text='Unique identifier for this object. It is automatically '\
+        help_text='Unique identifier for this object. It is automatically '
                     'generated and cannot be modified.'
     )
 

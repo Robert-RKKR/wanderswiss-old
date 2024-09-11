@@ -32,7 +32,7 @@ class UserBaseModel(BaseModel):
         verbose_name=_('User'),
         help_text=_('User responsible for the provided object. This field '\
                     'links to the user who created or is managing this object.'),
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         null=True,
         blank=True,
     )
