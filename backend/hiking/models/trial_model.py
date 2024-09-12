@@ -43,6 +43,7 @@ class TrialModel(
     )
 
 
+# Many to many relation model:
 class TrialRouteModel(BaseM2mModel):
 
     # Relation with other models:

@@ -49,6 +49,7 @@ class MultiDayTrialModel(
     )
 
 
+# Many to many relation model:
 class MultiDayTrialTrialModel(BaseM2mModel):
 
     # Relation with other models:
