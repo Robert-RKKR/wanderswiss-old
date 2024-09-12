@@ -13,15 +13,12 @@ from wanderswiss.base.constants.measurement import MeasurementSystemChoices
 # WanderSwiss - base model import:
 from wanderswiss.base.models.base_model import BaseModel
 
-# WanderSwiss - model import:
-from management.models.user_model import UserModel
-
 # User settings dictionary:
 user_settings = {}
 
 
 # User setting model class:
-class UserSettingsModel(UserModel):
+class UserSettingsModel(BaseModel):
 
     class Meta:
         

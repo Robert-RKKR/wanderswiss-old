@@ -30,6 +30,7 @@ class StatusBasedModel(BaseModel):
     creator = models.ForeignKey(
         UserModel,
         verbose_name=_('Creator'),
+        related_name='%(class)s_creator',
         help_text=_('Creator responsible for the provided object. This field '
                     'links to the user who created or is managing this object.'),
         on_delete=models.CASCADE,
