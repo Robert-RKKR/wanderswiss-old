@@ -46,6 +46,12 @@ class TrialModel(
 # Many to many relation model:
 class TrialRouteModel(BaseM2mModel):
 
+    class Meta:
+        
+        # Model name values:
+        verbose_name = 'Trial & Route relation'
+        verbose_name_plural = 'Trial & Route relations'
+
     # Relation with other models:
     trial = models.ForeignKey(
         TrialModel, 

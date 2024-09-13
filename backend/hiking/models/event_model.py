@@ -23,7 +23,6 @@ class EventModel(
     IdentificationBaseModel,
     LocalizationBaseModel):
 
-
     class Meta:
         
         # Model name values:
@@ -62,12 +61,11 @@ class EventModel(
 # Many to many relation model:
 class UserEventModel(BaseM2mModel):
 
-
     class Meta:
         
         # Model name values:
-        verbose_name = 'User Event relation'
-        verbose_name_plural = 'User Event relations'
+        verbose_name = 'User & Event relation'
+        verbose_name_plural = 'User & Event relations'
 
     # Relation with other models:
     user = models.ForeignKey(

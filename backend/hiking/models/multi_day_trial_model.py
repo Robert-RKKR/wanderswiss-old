@@ -52,6 +52,12 @@ class MultiDayTrialModel(
 # Many to many relation model:
 class MultiDayTrialTrialModel(BaseM2mModel):
 
+    class Meta:
+        
+        # Model name values:
+        verbose_name = 'Multi day trial & Trial relation'
+        verbose_name_plural = 'Multi day trial & Trial relations'
+
     # Relation with other models:
     trial = models.ForeignKey(
         TrialModel, 

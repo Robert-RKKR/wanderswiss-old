@@ -5,12 +5,45 @@ from django.contrib import admin
 from wanderswiss.base.admins.based_admin import BaseAdmin
 
 # Capybara - hiking model import:
+from hiking.models.multi_day_trial_model import MultiDayTrialTrialModel
 from hiking.models.multi_day_trial_model import MultiDayTrialModel
+from hiking.models.trial_model import TrialRouteModel
 from hiking.models.event_model import UserEventModel
 from hiking.models.route_model import RouteModel
 from hiking.models.trial_model import TrialModel
 from hiking.models.event_model import EventModel
 
+
+
+# All admin inline classes:
+class MultiDayTrialTrialInline(admin.TabularInline):
+    model = MultiDayTrialTrialModel
+    extra = 1
+    autocomplete_fields = ['multi_day_trial']
+
+
+class TrialMultiDayTrialTrialInline(admin.TabularInline):
+    model = MultiDayTrialTrialModel
+    extra = 1
+    autocomplete_fields = ['trial']
+
+
+class TrialRouteInline(admin.TabularInline):
+    model = TrialRouteModel
+    extra = 1
+    autocomplete_fields = ['trial']
+
+
+class RouteTrialInline(admin.TabularInline):
+    model = TrialRouteModel
+    extra = 1
+    autocomplete_fields = ['route']
+
+
+class UserEventInline(admin.TabularInline):
+    model = UserEventModel
+    extra = 1
+    autocomplete_fields = ['user']
 
 
 # All admin classes:
@@ -32,12 +65,18 @@ class MultiDayTrialAdmin(BaseAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'creator', 'created', 'updated', 'name', 'description',)
+            'fields': ('is_active', 'creator', 'created', 'updated',
+                       'name', 'description',)
+        }),
+        ('MDT information', {
+            'classes': ('wide', 'extrapretty',),
+            'fields': ('days',)
         }),
     )
     readonly_fields = (
         'creator', 'created', 'updated',
     )
+    inlines = [MultiDayTrialTrialInline]
     empty_value_display = '--None--'
 
 
@@ -76,6 +115,7 @@ class RouteAdmin(BaseAdmin):
     readonly_fields = (
         'creator', 'created', 'updated',
     )
+    inlines = [RouteTrialInline]
     empty_value_display = '--None--'
 
 
@@ -97,19 +137,15 @@ class TrialAdmin(BaseAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'creator', 'created', 'updated', 'name', 'description',)
+            'fields': ('is_active', 'creator', 'created', 'updated',
+                       'name', 'description',)
         }),
     )
     readonly_fields = (
         'creator', 'created', 'updated',
     )
+    inlines = [TrialMultiDayTrialTrialInline, TrialRouteInline]
     empty_value_display = '--None--'
-
-
-class UserEventInline(admin.TabularInline):
-    model = UserEventModel
-    extra = 1
-    autocomplete_fields = ['user']
 
 
 @admin.register(EventModel)
@@ -130,7 +166,8 @@ class EventAdmin(BaseAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('is_active', 'creator', 'created', 'updated', 'name', 'description',)
+            'fields': ('is_active', 'creator', 'created', 'updated',
+                       'name', 'description',)
         }),
         ('Relations', {
             'classes': ('wide', 'extrapretty',),
