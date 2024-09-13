@@ -109,7 +109,7 @@ class IdentificationBaseModel(BaseModel):
         # Collect model representation name:
         model_rep = self.model_representation()
         # Return object representation:
-        return f'<WanderSwiss {model_rep}, object: {self.name}>'
+        return f'<{model_rep}: {self.name}>'
 
     def __str__(self) -> str:
         """
@@ -119,7 +119,7 @@ class IdentificationBaseModel(BaseModel):
         # Collect model representation name:
         model_rep = self.model_representation()
         # Return object representation:
-        return f'<WanderSwiss {model_rep}, object: {self.name}>'
+        return f'<{model_rep}: {self.name}>'
 
     def natural_key(self) -> str:
         """
@@ -129,7 +129,7 @@ class IdentificationBaseModel(BaseModel):
         # Collect model representation name:
         model_rep = self.model_representation()
         # Return object representation:
-        return f'<WanderSwiss {model_rep}, object: {self.name}>'
+        return f'<{model_rep}: {self.name}>'
     
     # Additional model methods:
     def dedicated_operation(self):

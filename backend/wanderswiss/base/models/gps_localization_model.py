@@ -26,11 +26,15 @@ class GpsLocalizationBaseModel(BaseModel):
     # Localization information:
     latitude = models.FloatField(
         verbose_name=_('Latitude'),
-        help_text=_('Latitude of the location.')
+        help_text=_('Latitude of the location.'),
+        null=True,
+        blank=True
     )
     longitude = models.FloatField(
         verbose_name=_('Longitude'),
-        help_text=_('Longitude of the location.')
+        help_text=_('Longitude of the location.'),
+        null=True,
+        blank=True
     )
 
     # Localization range information:

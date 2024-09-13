@@ -60,7 +60,9 @@ class RouteModel(
         verbose_name = _('Middle points'),
         related_name='route_middle_points',
         help_text = _('All middle points of the route.'),
-        limit_choices_to={'type': ChoicesChoices.POI}
+        limit_choices_to={'type': ChoicesChoices.POI},
+        null=True,
+        blank=True
     )
     end_point = models.ForeignKey(
         ChoiceModel, 
@@ -82,7 +84,9 @@ class RouteModel(
     # Model based values:
     gps_data = models.TextField(
         verbose_name = _('GPS Data'),
-        help_text = _('GPS data in XML format.')
+        help_text = _('GPS data in XML format.'),
+        null=True,
+        blank=True
     )
     distance = models.FloatField(
         verbose_name = _('Distance (km)'), 
@@ -98,7 +102,9 @@ class RouteModel(
     )
     min_elevation = models.FloatField(
         verbose_name = _('Minimum Elevation (m)'), 
-        help_text = _('Minimum elevation in meters.')
+        help_text = _('Minimum elevation in meters.'),
+        null=True,
+        blank=True
     )
     max_elevation = models.FloatField(
         verbose_name = _('Maximum Elevation (m)'), 

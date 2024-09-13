@@ -73,17 +73,6 @@ class StatusBasedModel(BaseModel):
         auto_now=True,
     )
 
-    # object representation:
-    def __repr__(self) -> str:
-        return f'PK: {self.pk}'
-
-    def __str__(self) -> str:
-        return  f'PK: {self.pk}'
-
-    # Natural key representation:
-    def natural_key(self):
-        return f'PK: {self.pk}'
-
     @classmethod
     def show_count_inactive(cls):
         """ Return number of active objects. """
