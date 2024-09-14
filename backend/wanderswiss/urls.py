@@ -19,6 +19,13 @@ from django.urls import path
 
 # URLs registration:
 urlpatterns = [
+
+    # Django - admin registration:
+    path('admin/', admin.site.urls),
+
+    # Test server registration:
+    path('test/', include('hiking.urls')),
+
     # Add the path for language switching:
     path('i18n/', include('django.conf.urls.i18n')),
 
@@ -38,12 +45,3 @@ urlpatterns = [
     path('api-notification/', include('notification.api.urls')),
     path('api-management/', include('management.api.urls')),
 ]
-
-urlpatterns += i18n_patterns(
-
-    # Django - admin registration:
-    path('admin/', admin.site.urls),
-
-    # Test server registration:
-    path('test/', include('hiking.urls'))
-)
