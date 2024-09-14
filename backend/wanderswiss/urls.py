@@ -36,6 +36,7 @@ urlpatterns = [
 
     # API views registration:
     path('api-notification/', include('notification.api.urls')),
+    path('api-management/', include('management.api.urls')),
 ]
 
 urlpatterns += i18n_patterns(

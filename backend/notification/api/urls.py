@@ -1,7 +1,7 @@
-# Capybara - base route import:
+# WanderSwiss - base route import:
 from wanderswiss.base.api.base_default_router import BaseDefaultRouter
 
-# AutoCli2 - view set import:
+# WanderSwiss - view set import:
 from notification.api.views.notification_view import NotificationView
 from notification.api.views.change_log_view import ChangeLogView
 from notification.api.views.log_view import LogView
