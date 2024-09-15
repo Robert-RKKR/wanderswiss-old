@@ -1,21 +1,23 @@
 # Django - models import:
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 # Django - translation model import:
 from django.utils.translation import gettext_lazy as _
 
-# WanderSwiss - object representation model import:
-from notification.models.object_representation_model import ObjectRepresentationModel
-
 # WanderSwiss - constance import:
 from wanderswiss.base.constants.action_type import ActionTypeChoices
+
+# WanderSwiss - base model import:
+from wanderswiss.base.models.base_model import BaseModel
 
 # WanderSwiss - management model import:
 from management.models.user_model import UserModel
 
 
 # Change model class:
-class ChangeLogModel(ObjectRepresentationModel):
+class ChangeLogModel(BaseModel):
 
     class Meta:
         
@@ -40,6 +42,25 @@ class ChangeLogModel(ObjectRepresentationModel):
                     'automatically records the exact moment when the change '
                     'entry is added to the log.'),
         auto_now_add=True,
+    )
+
+    # Model information:
+    content_type = models.ForeignKey(
+        ContentType,
+        on_delete=models.CASCADE
+    )
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey(
+        'content_type',
+        'object_id'
+    )
+    object_representation = models.CharField(
+        verbose_name=_('Object representation'),
+        help_text=_('A string representation of the object. This provides a '
+                    'human-readable description or identifier of the object.'),
+        max_length=128,
+        null=True,
+        blank=True,
     )
 
     # User information:
